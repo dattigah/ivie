@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · Client Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./ivie-data.js"></script>
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){html,body{scroll-behavior:auto;}}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+::selection{background:#D9D0C4;color:#141210;}
+section[id]{scroll-margin-top:96px;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="background:#F6F1EA;color:#141210;font-family:'Manrope',sans-serif;font-size:15px;overflow-x:clip;">
+  <dc-import name="IvieHeader" hint-size="100%,1px"></dc-import>
+  <main style="max-width:1320px;margin:0 auto;padding:clamp(120px,14vw,160px) clamp(20px,5vw,72px) clamp(64px,8vw,112px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-start;">
+    <div style="display:flex;flex-direction:column;gap:18px;position:sticky;top:110px;flex:1 1 260px;min-width:0;">
+      <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Client Care</span>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-0.015em;">How we look after you.</h1>
+      <nav aria-label="Client Care sections" style="display:flex;flex-direction:column;border-top:1px solid #D9D0C4;margin-top:8px;">
+        <a href="#delivery" style="display:flex;align-items:center;min-height:48px;border-bottom:1px solid #D9D0C4;font-size:14px;color:#141210;text-decoration:none;" style-hover="color:#6B6056;">Collection and delivery</a>
+        <a href="#returns" style="display:flex;align-items:center;min-height:48px;border-bottom:1px solid #D9D0C4;font-size:14px;color:#141210;text-decoration:none;" style-hover="color:#6B6056;">Returns and exchanges</a>
+        <a href="#custom" style="display:flex;align-items:center;min-height:48px;border-bottom:1px solid #D9D0C4;font-size:14px;color:#141210;text-decoration:none;" style-hover="color:#6B6056;">Custom order terms</a>
+        <a href="#privacy" style="display:flex;align-items:center;min-height:48px;border-bottom:1px solid #D9D0C4;font-size:14px;color:#141210;text-decoration:none;" style-hover="color:#6B6056;">Privacy</a>
+        <a href="#terms" style="display:flex;align-items:center;min-height:48px;border-bottom:1px solid #D9D0C4;font-size:14px;color:#141210;text-decoration:none;" style-hover="color:#6B6056;">Terms</a>
+      </nav>
+      <a href="https://wa.me/233000000000?text=Hello%20Ivi%C3%A9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:48px;padding:0 22px;margin-top:8px;border:1px solid #141210;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#141210;text-decoration:none;">Ask us on WhatsApp</a>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:56px;flex:2 1 520px;min-width:0;">
+      <section id="delivery" style="display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3vw,44px);line-height:1.05;">Collection and delivery</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;">
+          <div style="display:flex;flex-direction:column;gap:6px;padding:20px;background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;"><span style="font-size:16px;">Collect in store</span><span style="font-size:13px;line-height:1.6;color:#6B6056;">East Legon or Spintex. Ready the same day when the piece is in stock. Complimentary.</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:20px;background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;"><span style="font-size:16px;">Accra delivery</span><span style="font-size:13px;line-height:1.6;color:#6B6056;">Next day by our own rider. GHS 60, complimentary for Gold and Onyx clients.</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:20px;background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;"><span style="font-size:16px;">Across Ghana</span><span style="font-size:13px;line-height:1.6;color:#6B6056;">Two to four days by courier, tracked by WhatsApp. From GHS 120.</span></div>
+        </div>
+        <p style="margin:0;max-width:640px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">We hold reserved pieces for 48 hours. Every order arrives wrapped in our tissue and box, with a note from your stylist.</p>
+      </section>
+
+      <section id="returns" style="display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3vw,44px);line-height:1.05;">Returns and exchanges</h2>
+        <p style="margin:0;max-width:640px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">Ready-to-wear pieces can be exchanged or returned within 14 days, unworn and with their tags. Bring them to either boutique, or message us and our rider will collect in Accra.</p>
+        <p style="margin:0;max-width:640px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">Refunds go back to the mobile money wallet or card you paid with, within five working days. Altered ready-to-wear and custom pieces cannot be returned, but we will always refit them.</p>
+      </section>
+
+      <section id="custom" style="display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3vw,44px);line-height:1.05;">Custom order terms</h2>
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid #D9D0C4;max-width:720px;">
+          <li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #D9D0C4;font-size:15px;line-height:1.65;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#6B6056;min-width:24px;">1</span><span>A 50% deposit holds your place in the atelier calendar and buys your fabric. The balance is due at the final fitting.</span></li>
+          <li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #D9D0C4;font-size:15px;line-height:1.65;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#6B6056;min-width:24px;">2</span><span>Your designer shares a sketch and fabric swatches for approval before anything is cut.</span></li>
+          <li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #D9D0C4;font-size:15px;line-height:1.65;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#6B6056;min-width:24px;">3</span><span>Two fittings are included. Further fittings and changes after approval are quoted first.</span></li>
+          <li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #D9D0C4;font-size:15px;line-height:1.65;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#6B6056;min-width:24px;">4</span><span>If you cancel before cutting, we refund the deposit less the cost of fabric already bought.</span></li>
+        </ol>
+        <a href="/atelier" style="display:inline-flex;align-items:center;align-self:flex-start;min-height:44px;font-size:13px;font-weight:500;color:#141210;text-decoration:none;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Visit the Atelier</span></a>
+      </section>
+
+      <section id="privacy" style="display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3vw,44px);line-height:1.05;">Privacy</h2>
+        <p style="margin:0;max-width:640px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">We keep your name, contact details, measurements and style notes so your stylist can serve you well. We never sell them. We never see your MoMo PIN or full card number. You choose how we contact you in your account, and you can ask us to delete your details at any time, in line with Ghana's Data Protection Act, 2012.</p>
+      </section>
+
+      <section id="terms" style="display:flex;flex-direction:column;gap:14px;">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3vw,44px);line-height:1.05;">Terms</h2>
+        <p style="margin:0;max-width:640px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">Prices are in Ghana cedis and include VAT. Colours on screen can differ slightly from the fabric, so we are happy to send a swatch photo on WhatsApp before you buy. Membership benefits are personal and are reviewed each year.</p>
+        <p style="margin:0;font-size:13px;color:#6B6056;">Draft wording for the prototype. To be reviewed by Ivié's legal adviser.</p>
+      </section>
+    </div>
+  </main>
+  <dc-import name="IvieFooter" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

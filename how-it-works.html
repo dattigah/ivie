@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · How It Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+summary{list-style:none;}
+summary::-webkit-details-marker{display:none;}
+details[open] > summary [data-chev]{transform:rotate(45deg);}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="background:#F6F1EA;font-family:'Manrope',sans-serif;color:#141210;">
+
+  <header style="background:#2B211B;color:#F6F1EA;padding:clamp(24px,3vw,40px) clamp(20px,5vw,72px) clamp(48px,7vw,96px);">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1240px;margin:0 auto;">
+      <a href="/prototype-hub" style="display:inline-flex;align-items:center;min-height:44px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;text-decoration:none;" style-hover="color:#F6F1EA;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">← Prototype Hub</span></a>
+      <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">03 · How It Works</span>
+    </div>
+    <div style="max-width:1240px;margin:clamp(48px,7vw,96px) auto 0;display:flex;flex-direction:column;gap:20px;">
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(56px,8vw,120px);line-height:0.95;letter-spacing:-0.015em;">How It Works</h1>
+      <p style="margin:0;max-width:560px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(22px,2.2vw,30px);line-height:1.3;color:#D9D0C4;text-wrap:pretty;">One system behind the shop, the atelier and the back office.</p>
+      <p style="margin:0;max-width:520px;font-size:14px;line-height:1.7;color:#D9D0C4;">Each panel reads as a picture. Open <span style="color:#F6F1EA;">Technical detail</span> on any panel for the IT team's view.</p>
+    </div>
+  </header>
+
+  <nav style="position:sticky;top:0;z-index:20;background:rgba(246,241,234,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #D9D0C4;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;gap:4px 28px;flex-wrap:wrap;">
+      <a href="#architecture" style="display:inline-flex;align-items:center;min-height:52px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:#141210;" style-hover="color:#A8865A;">01 The system</a>
+      <a href="#data" style="display:inline-flex;align-items:center;min-height:52px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:#141210;" style-hover="color:#A8865A;">02 What it remembers</a>
+      <a href="#flows" style="display:inline-flex;align-items:center;min-height:52px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:#141210;" style-hover="color:#A8865A;">03 Six journeys</a>
+      <a href="#security" style="display:inline-flex;align-items:center;min-height:52px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:#141210;" style-hover="color:#A8865A;">04 Safety</a>
+    </div>
+  </nav>
+
+  <section id="architecture" data-screen-label="01 Architecture" style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px) 0;scroll-margin-top:52px;">
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(32px,4vw,56px);">
+      <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">01 · The system</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.4vw,60px);line-height:1;">Everyone meets in one place.</h2>
+    </div>
+
+    <div ref="{{ archRef }}" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:28px clamp(56px,7vw,104px);align-items:center;">
+      {{ archLines }}
+      <div style="display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Clients</span>
+        <div data-node="n-web" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.1;">Website</span>
+          <span style="font-size:13px;color:#6B6056;">Shop, book, request a custom piece</span>
+        </div>
+        <div data-node="n-app" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.1;">Installable app</span>
+          <span style="font-size:13px;color:#6B6056;">Same shop on the home screen, with alerts</span>
+        </div>
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;margin-top:10px;">Staff</span>
+        <div data-node="n-staff" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.1;">Back office</span>
+          <span style="font-size:13px;color:#6B6056;">Orders, clients, inbox, atelier</span>
+        </div>
+      </div>
+
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="justify-self:center;width:1px;height:28px;background:#A8865A;"></div></sc-if>
+
+      <div style="display:flex;flex-direction:column;gap:56px;position:relative;z-index:1;">
+        <div data-node="n-core" style="background:#141210;color:#F6F1EA;border-radius:2px;padding:22px 22px;display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">The brain</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.05;">Web app</span>
+          <span style="font-size:13px;color:#D9D0C4;">Next.js on Vercel</span>
+        </div>
+        <div data-node="n-db" style="background:#2B211B;color:#F6F1EA;border-radius:2px;padding:22px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">The memory</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.05;">Supabase</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="padding:5px 10px;border:1px solid rgba(217,208,196,0.4);border-radius:2px;font-size:12px;color:#F6F1EA;">Database</span>
+            <span style="padding:5px 10px;border:1px solid rgba(217,208,196,0.4);border-radius:2px;font-size:12px;color:#F6F1EA;">Sign-in</span>
+            <span style="padding:5px 10px;border:1px solid rgba(217,208,196,0.4);border-radius:2px;font-size:12px;color:#F6F1EA;">Images and sketches</span>
+            <span style="padding:5px 10px;border:1px solid rgba(217,208,196,0.4);border-radius:2px;font-size:12px;color:#F6F1EA;">Security rules</span>
+            <span style="padding:5px 10px;border:1px solid rgba(217,208,196,0.4);border-radius:2px;font-size:12px;color:#F6F1EA;">Scheduled jobs</span>
+          </div>
+        </div>
+      </div>
+
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="justify-self:center;width:1px;height:28px;background:#A8865A;"></div></sc-if>
+
+      <div style="display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;">
+        <div data-node="n-pay" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;">Payments</span>
+          <span style="font-size:13px;color:#6B6056;">Paystack · card and mobile money · confirms back</span>
+        </div>
+        <div data-node="n-msg" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;">Messaging</span>
+          <span style="font-size:13px;color:#6B6056;">WhatsApp Business · SMS · email · push</span>
+        </div>
+        <div data-node="n-inbox" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;">Unified inbox</span>
+          <span style="font-size:13px;color:#6B6056;">WhatsApp, Instagram, Facebook, SMS, email → one place</span>
+        </div>
+        <div data-node="n-social" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;">Social shop sync</span>
+          <span style="font-size:13px;color:#6B6056;">Product feed to Facebook and Instagram</span>
+        </div>
+        <div data-node="n-auto" style="background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;">Automations</span>
+          <span style="font-size:13px;color:#6B6056;">Scheduled reminder jobs</span>
+        </div>
+      </div>
+    </div>
+
+    <details open="{{ techOpen }}" style="margin-top:clamp(32px,4vw,48px);border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;">
+      <summary style="display:flex;align-items:center;justify-content:space-between;min-height:56px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">Technical detail<span data-chev="" style="font-size:20px;font-weight:400;color:#A8865A;transition:transform 300ms cubic-bezier(0.22,1,0.36,1);">+</span></summary>
+      <div style="background:#141210;color:#D9D0C4;padding:clamp(20px,2.4vw,32px);margin-bottom:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px 40px;">
+        <sc-for list="{{ archTech }}" as="row" hint-placeholder-count="6">
+          <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-bottom:1px solid rgba(217,208,196,0.15);">
+            <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">{{ row.k }}</span>
+            <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.65;color:#F6F1EA;">{{ row.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </details>
+  </section>
+
+  <section id="data" data-screen-label="02 Data model" style="max-width:1240px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,5vw,72px) 0;scroll-margin-top:52px;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:clamp(28px,3.6vw,48px);">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">02 · What it remembers</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.4vw,60px);line-height:1;">Twenty-three records, all linked.</h2>
+      </div>
+      <p style="margin:0;font-size:14px;color:#6B6056;">Tap any box to see what it connects to.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:24px;">
+      <div ref="{{ dataRef }}" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:clamp(20px,2.6vw,36px);">
+        {{ dataLines }}
+        <sc-for list="{{ clusters }}" as="cl" hint-placeholder-count="7">
+          <div style="display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;">
+            <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;padding-bottom:6px;border-bottom:1px solid #D9D0C4;">{{ cl.name }}</span>
+            <sc-for list="{{ cl.items }}" as="e" hint-placeholder-count="3">
+              <button type="button" data-entity="{{ e.id }}" onClick="{{ e.onSelect }}" aria-pressed="{{ e.on }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;padding:0 14px;text-align:left;border-radius:2px;border:1px solid {{ e.border }};background:{{ e.bg }};color:{{ e.fg }};font-family:'Manrope',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:background 200ms, border-color 200ms;">{{ e.name }}<span style="font-size:11px;color:{{ e.sub }};">{{ e.count }}</span></button>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px 48px;align-items:start;background:#ECE4D8;padding:clamp(20px,2.6vw,32px);border-radius:2px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Selected</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3vw,40px);line-height:1;">{{ selName }}</span>
+          <span style="font-size:15px;line-height:1.6;color:#2B211B;text-wrap:pretty;">{{ selPlain }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Linked to</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <sc-for list="{{ selLinks }}" as="l" hint-placeholder-count="4">
+              <button type="button" onClick="{{ l.onSelect }}" style="min-height:36px;padding:0 12px;border:1px solid #A8865A;background:#F6F1EA;border-radius:2px;font-family:'Manrope',sans-serif;font-size:13px;color:#141210;cursor:pointer;" style-hover="background:#FBF8F3;">{{ l.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <details open="{{ techOpen }}" style="margin-top:clamp(32px,4vw,48px);border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;">
+      <summary style="display:flex;align-items:center;justify-content:space-between;min-height:56px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">Technical detail<span data-chev="" style="font-size:20px;font-weight:400;color:#A8865A;transition:transform 300ms cubic-bezier(0.22,1,0.36,1);">+</span></summary>
+      <div style="background:#141210;color:#D9D0C4;padding:clamp(20px,2.4vw,32px);margin-bottom:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px 40px;">
+        <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-bottom:1px solid rgba(217,208,196,0.15);">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">Table · {{ selTable }}</span>
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.65;color:#F6F1EA;">{{ selCols }}</span>
+        </div>
+        <sc-for list="{{ dataTech }}" as="row" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-bottom:1px solid rgba(217,208,196,0.15);">
+            <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">{{ row.k }}</span>
+            <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.65;color:#F6F1EA;">{{ row.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </details>
+  </section>
+
+  <section id="flows" data-screen-label="03 Flows" style="max-width:1240px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,5vw,72px) 0;scroll-margin-top:52px;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:clamp(28px,3.6vw,48px);">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">03 · Six journeys</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.4vw,60px);line-height:1;">What happens, step by step.</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:#6B6056;align-items:center;">
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:#ECE4D8;border:1px solid #D9D0C4;"></span>Client</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:#141210;"></span>Ivié system</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:#4F6B4A;"></span>Staff</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:#D9D0C4;"></span>Partner</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
+      <sc-for list="{{ flows }}" as="f" hint-placeholder-count="6">
+        <article style="display:flex;flex-direction:column;gap:18px;padding-top:24px;border-top:1px solid #D9D0C4;">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 24px;">
+            <div style="display:flex;align-items:baseline;gap:16px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;color:#7E6140;">{{ f.n }}</span>
+              <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.1;">{{ f.title }}</h3>
+            </div>
+            <button type="button" onClick="{{ f.onPlay }}" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:transparent;border:1px solid #141210;border-radius:2px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#141210;cursor:pointer;" style-hover="background:#141210;color:#F6F1EA;">{{ f.playLabel }}</button>
+          </div>
+          <div style="overflow-x:auto;padding-bottom:6px;">
+            <ol style="list-style:none;margin:0;padding:0;display:flex;min-width:max-content;">
+              <sc-for list="{{ f.steps }}" as="s" hint-placeholder-count="6">
+                <li style="flex:1 1 0;min-width:152px;max-width:220px;display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:center;">
+                    <span style="flex:none;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:{{ s.dotBg }};color:{{ s.dotFg }};border:1px solid #A8865A;transition:background 300ms;">{{ s.num }}</span>
+                    <span style="flex:1;height:1px;background:{{ s.lineBg }};transition:background 300ms;"></span>
+                  </div>
+                  <div style="margin-right:14px;display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:2px;border:1px solid {{ s.cardBorder }};background:{{ s.cardBg }};min-height:96px;box-sizing:border-box;transition:background 300ms, border-color 300ms;">
+                    <span style="align-self:flex-start;padding:3px 8px;border-radius:2px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:{{ s.whoBg }};color:{{ s.whoFg }};">{{ s.who }}</span>
+                    <span style="font-size:14px;line-height:1.4;font-weight:500;color:#141210;text-wrap:pretty;">{{ s.text }}</span>
+                    <sc-if value="{{ s.hasChips }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                        <sc-for list="{{ s.chips }}" as="c" hint-placeholder-count="3">
+                          <span style="padding:2px 7px;border:1px solid #D9D0C4;border-radius:2px;font-size:11px;color:#2B211B;background:#F6F1EA;">{{ c }}</span>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ s.stamp }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;gap:10px;margin-top:auto;font-size:11px;color:#4F6B4A;">
+                        <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;border-radius:50%;background:#4F6B4A;"></span>Notified</span>
+                        <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;border-radius:50%;background:#4F6B4A;"></span>Logged</span>
+                      </div>
+                    </sc-if>
+                  </div>
+                </li>
+              </sc-for>
+            </ol>
+          </div>
+          <details open="{{ techOpen }}" style="border-bottom:1px solid #D9D0C4;">
+            <summary style="display:flex;align-items:center;justify-content:space-between;min-height:48px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#2B211B;">Technical detail<span data-chev="" style="font-size:20px;font-weight:400;color:#A8865A;transition:transform 300ms cubic-bezier(0.22,1,0.36,1);">+</span></summary>
+            <div style="background:#141210;padding:clamp(18px,2vw,28px);margin-bottom:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 40px;">
+              <sc-for list="{{ f.tech }}" as="row" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:4px;padding:10px 0;border-bottom:1px solid rgba(217,208,196,0.15);">
+                  <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">{{ row.k }}</span>
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.65;color:#F6F1EA;">{{ row.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </details>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="security" data-screen-label="04 Security" style="margin-top:clamp(72px,9vw,128px);background:#2B211B;color:#F6F1EA;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);scroll-margin-top:52px;">
+    <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px);">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">04 · Safety and accountability</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.4vw,60px);line-height:1;">Everyone sees only what they need.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:1px;background:rgba(217,208,196,0.25);border:1px solid rgba(217,208,196,0.25);">
+        <div style="background:#2B211B;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:#A8865A;">01</span>
+          <span style="font-size:15px;line-height:1.5;">Each role sees only what it needs.</span>
+        </div>
+        <div style="background:#2B211B;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:#A8865A;">02</span>
+          <span style="font-size:15px;line-height:1.5;">Staff see only their store and their assigned clients.</span>
+        </div>
+        <div style="background:#2B211B;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:#A8865A;">03</span>
+          <span style="font-size:15px;line-height:1.5;">Card and mobile money details stay with Paystack. Ivié never stores them.</span>
+        </div>
+        <div style="background:#2B211B;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:#A8865A;">04</span>
+          <span style="font-size:15px;line-height:1.5;">Every staff action is logged: who, what, when.</span>
+        </div>
+        <div style="background:#2B211B;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;color:#A8865A;">05</span>
+          <span style="font-size:15px;line-height:1.5;">Everything is backed up daily.</span>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;min-width:640px;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:12px 12px 12px 0;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;border-bottom:1px solid rgba(217,208,196,0.3);">Who</th>
+              <sc-for list="{{ roleCols }}" as="c" hint-placeholder-count="6">
+                <th style="text-align:center;padding:12px 8px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;border-bottom:1px solid rgba(217,208,196,0.3);">{{ c }}</th>
+              </sc-for>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ roles }}" as="r" hint-placeholder-count="5">
+              <tr>
+                <td style="padding:14px 12px 14px 0;border-bottom:1px solid rgba(217,208,196,0.15);font-family:'Cormorant Garamond',serif;font-size:22px;white-space:nowrap;">{{ r.name }}</td>
+                <sc-for list="{{ r.cells }}" as="cell" hint-placeholder-count="6">
+                  <td style="text-align:center;padding:14px 8px;border-bottom:1px solid rgba(217,208,196,0.15);">
+                    <span title="{{ cell.label }}" aria-label="{{ cell.label }}" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:{{ cell.bg }};border:1px solid {{ cell.border }};"></span>
+                  </td>
+                </sc-for>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:12px;color:#D9D0C4;">
+          <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:#A8865A;border:1px solid #A8865A;"></span>Full access</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:transparent;border:1px solid #A8865A;"></span>View only</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:transparent;border:1px solid rgba(217,208,196,0.25);"></span>No access</span>
+        </div>
+      </div>
+
+      <details open="{{ techOpen }}" style="border-top:1px solid rgba(217,208,196,0.3);border-bottom:1px solid rgba(217,208,196,0.3);">
+        <summary style="display:flex;align-items:center;justify-content:space-between;min-height:56px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#F6F1EA;">Technical detail<span data-chev="" style="font-size:20px;font-weight:400;color:#A8865A;transition:transform 300ms cubic-bezier(0.22,1,0.36,1);">+</span></summary>
+        <div style="background:#141210;padding:clamp(20px,2.4vw,32px);margin-bottom:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px 40px;">
+          <sc-for list="{{ secTech }}" as="row" hint-placeholder-count="6">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-bottom:1px solid rgba(217,208,196,0.15);">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#A8865A;">{{ row.k }}</span>
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.65;color:#F6F1EA;">{{ row.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer style="background:#141210;color:#D9D0C4;padding:32px clamp(20px,5vw,72px);">
+    <div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:0.34em;color:#F6F1EA;">IVIÉ</span>
+      <div style="display:flex;flex-wrap:wrap;gap:4px 24px;">
+        <a href="/prototype-hub" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Prototype Hub</span></a>
+        <a href="/" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Client Experience</span></a>
+        <a href="/back-office" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Staff Back Office</span></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;openTechnical&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;View&quot;}}">
+const WHO = {
+  client: ['#ECE4D8', '#2B211B'],
+  ivie: ['#141210', '#F6F1EA'],
+  staff: ['#4F6B4A', '#F6F1EA'],
+  partner: ['#D9D0C4', '#141210']
+};
+
+const FLOWS = [
+  { id: 'order', title: 'Online order to collection', steps: [
+    ['client', 'Client', 'Pays online'],
+    ['partner', 'Paystack', 'Payment confirmed'],
+    ['ivie', 'Ivié', 'Stock reserved at the chosen store'],
+    ['ivie', 'Ivié', 'Store dashboard updates instantly'],
+    ['staff', 'Staff', 'Marks the order ready'],
+    ['ivie', 'Ivié', 'Client notified'],
+    ['client', 'Client', 'Collects in store'],
+    ['ivie', 'Ivié', 'Loyalty points added']
+  ], tech: [
+    ['Confirmation', 'Paystack webhook charge.success → /api/paystack/webhook. Verify x-paystack-signature (HMAC SHA-512), then re-verify via GET /transaction/verify/:reference.'],
+    ['Idempotency', 'payments.paystack_ref is UNIQUE. Duplicate webhooks are ignored.'],
+    ['Stock', 'RPC reserve_stock(order_id, store_id) in one transaction: inventory.available − qty, inventory.reserved + qty. Fails loudly if short.'],
+    ['Live dashboard', 'Supabase Realtime on orders, filtered by store_id = staff store.'],
+    ['Ready / collected', 'Status change → notification job (WhatsApp template + push + email). On collected: reserved − qty, insert loyalty_ledger row per tier rule.']
+  ]},
+  { id: 'momo', title: 'Mobile money payment', steps: [
+    ['client', 'Client', 'Enters mobile money number'],
+    ['partner', 'Network', 'Prompt appears on the phone'],
+    ['client', 'Client', 'Approves with PIN'],
+    ['ivie', 'Ivié', 'Confirmation and receipt']
+  ], tech: [
+    ['Charge', 'Paystack POST /charge with mobile_money { phone, provider: mtn | vod | atl }, currency GHS.'],
+    ['Status', 'Handle pay_offline / send_otp responses. Final state arrives via webhook; client screen listens on Realtime for the order row.'],
+    ['PIN', 'Entered on the handset only. Never passes through Ivié.'],
+    ['Receipt', 'PDF stored in Storage (receipts/, private). Sent by email + WhatsApp; also in Account › Orders.']
+  ]},
+  { id: 'custom', title: 'Custom order lifecycle', stamp: true, steps: [
+    ['client', 'Client', 'Request and deposit'],
+    ['staff', 'Stylist', 'Consultation'],
+    ['client', 'Client', 'Approves the design'],
+    ['staff', 'Atelier', 'Production'],
+    ['staff', 'Atelier', 'Fittings'],
+    ['client', 'Client', 'Pays the balance'],
+    ['staff', 'Atelier', 'Ready'],
+    ['client', 'Client', 'Collects']
+  ], tech: [
+    ['States', 'custom_orders.status enum: requested → consulted → design_approved → in_production → fitting → balance_paid → ready → collected.'],
+    ['Trail', 'Trigger on status change inserts custom_order_events (status, actor_id, note, files[]) and enqueues the client notification.'],
+    ['Files', 'Sketches and fabric photos in Storage bucket sketches/ (private). Shown via short-lived signed URLs.'],
+    ['Money', 'Two payments rows: kind = deposit, kind = balance. Balance link generated at the fitting stage.']
+  ]},
+  { id: 'remind', title: 'Automatic reminders', steps: [
+    ['ivie', 'Every morning', 'Scheduled check runs'],
+    ['ivie', 'Ivié', 'Finds clients who need a nudge', ['Quiet clients', 'Abandoned bags', 'Long-held wishlist', 'Birthdays', 'Fittings']],
+    ['ivie', 'Ivié', 'Creates a task for the assigned stylist'],
+    ['staff', 'Stylist', 'Messages the client from the inbox']
+  ], tech: [
+    ['Schedule', 'pg_cron daily 07:00 GMT → generate_reminders().'],
+    ['Rules', 'No order 90 days · cart idle 24 h · wishlist item 30 days · birthday in 7 days · fitting in 48 h.'],
+    ['Tasks', 'Insert reminders (client_id, type, assigned_to = clients.stylist_id, due_at). De-duplicated per client + type + week.'],
+    ['Action', 'Task opens the client thread in the inbox with a suggested message; an offer can be attached.']
+  ]},
+  { id: 'inbox', title: 'Unified inbox', steps: [
+    ['client', 'Any channel', 'Message arrives'],
+    ['ivie', 'Ivié', 'Matched to the client by phone, email or handle'],
+    ['staff', 'Staff', 'Sees it with full context'],
+    ['ivie', 'Ivié', 'Reply goes back on the same channel']
+  ], tech: [
+    ['Inbound', 'Webhooks: WhatsApp Cloud API, Instagram Messaging + Messenger (Meta Graph), SMS gateway (Hubtel or Arkesel), inbound email parse.'],
+    ['Matching', 'Phones normalised to E.164 (+233…). Match on phone, email or social handle; unknown senders create a lead client.'],
+    ['Storage', 'conversations (client_id, channel, assigned_to) · messages (direction, body, media, provider_id).'],
+    ['Outbound', 'Sent through the original provider. WhatsApp: free text inside 24 h, approved templates outside it.']
+  ]},
+  { id: 'social', title: 'Social shop sync', steps: [
+    ['staff', 'Staff', 'Product or price changes'],
+    ['ivie', 'Ivié', 'Product feed updates'],
+    ['partner', 'Meta', 'Facebook and Instagram shops update'],
+    ['client', 'Client', '"Shop now" leads to Ivié checkout']
+  ], tech: [
+    ['Feed', '/api/feeds/meta.xml regenerated on product or variant change (trigger → revalidate).'],
+    ['Fields', 'id, title, description, price (GHS), availability, image_link, link, item_group_id per product.'],
+    ['Pickup', 'Meta Commerce Manager scheduled fetch hourly, or Catalog Batch API for instant updates.'],
+    ['Links', 'Product URLs carry utm_source=instagram | facebook so sales are attributed in Insights.']
+  ]}
+];
+
+const CLUSTERS = [
+  ['People and places', [['stores', 'Stores'], ['staff', 'Staff'], ['clients', 'Clients'], ['measurements', 'Measurements']]],
+  ['Catalogue', [['products', 'Products'], ['product_variants', 'Product variants'], ['inventory', 'Inventory per store']]],
+  ['Shopping', [['wishlists', 'Wishlists'], ['carts', 'Carts'], ['reservations', 'Reservations']]],
+  ['Orders and money', [['orders', 'Orders'], ['order_items', 'Order items'], ['payments', 'Payments']]],
+  ['Atelier and visits', [['appointments', 'Appointments'], ['custom_orders', 'Custom orders'], ['custom_order_events', 'Custom order events']]],
+  ['Conversation', [['conversations', 'Conversations'], ['messages', 'Messages'], ['reminders', 'Reminders'], ['offers', 'Offers']]],
+  ['Loyalty and record', [['loyalty_ledger', 'Loyalty ledger'], ['referrals', 'Referrals'], ['activity_log', 'Activity log']]]
+];
+
+const ENT = {
+  stores: ['The three Ivié boutiques.', 'id, name, area, address, phone, hours'],
+  staff: ['Everyone on the team, and the store they belong to.', 'id, store_id, role, name, phone, auth_user_id'],
+  clients: ['Each client, their tier and their stylist.', 'id, name, phone (E.164), email, birthday, tier, stylist_id, ig_handle'],
+  measurements: ['A client\u2019s measurements, dated, with who took them.', 'id, client_id, taken_by, bust, waist, hips, length…, taken_at'],
+  products: ['Each piece in the collection.', 'id, name, collection, description, base_price, status'],
+  product_variants: ['Each colour and size of a piece.', 'id, product_id, colour, size, sku, price'],
+  inventory: ['How many of each variant sit in each store.', 'store_id, variant_id, available, reserved'],
+  wishlists: ['Pieces a client has saved.', 'client_id, variant_id, added_at'],
+  carts: ['What is in a client\u2019s bag right now.', 'id, client_id, items jsonb, updated_at'],
+  reservations: ['A piece held at a store for a client to try.', 'id, client_id, variant_id, store_id, hold_until, status'],
+  orders: ['A purchase, and the store it is collected from or sent by.', 'id, client_id, store_id, fulfilment, status, total'],
+  order_items: ['The pieces inside an order.', 'order_id, variant_id, qty, unit_price'],
+  payments: ['Money received: in full, a deposit, or a balance.', 'id, order_id | custom_order_id, kind, method, amount, paystack_ref, status'],
+  appointments: ['Store visits, consultations and fittings.', 'id, client_id, store_id, staff_id, type, starts_at'],
+  custom_orders: ['A made-to-measure commission.', 'id, client_id, stylist_id, measurement_id, status, quote'],
+  custom_order_events: ['Every stage of a commission, in order.', 'id, custom_order_id, status, actor_id, note, files[], at'],
+  conversations: ['One thread per client per channel.', 'id, client_id, channel, assigned_to, last_message_at'],
+  messages: ['Each message sent or received.', 'id, conversation_id, direction, body, media, provider_id, at'],
+  reminders: ['Tasks for stylists to get back in touch.', 'id, client_id, assigned_to, type, due_at, done_at'],
+  offers: ['Private codes and gestures for clients.', 'id, client_id?, code, value, expires_at'],
+  loyalty_ledger: ['Every point earned or spent.', 'id, client_id, order_id?, points (±), reason, at'],
+  referrals: ['Who introduced whom, and the reward.', 'id, referrer_id, referred_id, status, reward_points'],
+  activity_log: ['Every staff action, kept for good.', 'id, actor_id, action, entity, entity_id, before, after, at']
+};
+
+const EDGES = [
+  ['stores', 'staff'], ['stores', 'inventory'], ['stores', 'orders'], ['stores', 'reservations'], ['stores', 'appointments'],
+  ['staff', 'clients'], ['staff', 'appointments'], ['staff', 'custom_orders'], ['staff', 'custom_order_events'], ['staff', 'conversations'], ['staff', 'reminders'], ['staff', 'activity_log'], ['staff', 'measurements'],
+  ['clients', 'measurements'], ['clients', 'wishlists'], ['clients', 'carts'], ['clients', 'reservations'], ['clients', 'orders'], ['clients', 'appointments'], ['clients', 'custom_orders'], ['clients', 'conversations'], ['clients', 'reminders'], ['clients', 'offers'], ['clients', 'loyalty_ledger'], ['clients', 'referrals'],
+  ['measurements', 'custom_orders'],
+  ['products', 'product_variants'],
+  ['product_variants', 'inventory'], ['product_variants', 'wishlists'], ['product_variants', 'carts'], ['product_variants', 'order_items'], ['product_variants', 'reservations'],
+  ['orders', 'order_items'], ['orders', 'payments'], ['orders', 'loyalty_ledger'],
+  ['custom_orders', 'payments'], ['custom_orders', 'custom_order_events'],
+  ['conversations', 'messages'],
+  ['loyalty_ledger', 'referrals']
+];
+
+const NAMES = {};
+CLUSTERS.forEach(([, items]) => items.forEach(([id, n]) => { NAMES[id] = n; }));
+const LINKS = {};
+Object.keys(NAMES).forEach(k => { LINKS[k] = []; });
+EDGES.forEach(([a, b]) => { LINKS[a].push(b); LINKS[b].push(a); });
+
+const ARCH_EDGES = [['n-web', 'n-core'], ['n-app', 'n-core'], ['n-staff', 'n-core'], ['n-core', 'n-db'], ['n-core', 'n-pay'], ['n-core', 'n-msg'], ['n-core', 'n-inbox'], ['n-core', 'n-social'], ['n-core', 'n-auto']];
+
+const T = rows => rows.map(([k, v]) => ({ k, v }));
+
+const ARCH_TECH = T([
+  ['Web app', 'Next.js (App Router) on Vercel. Server components + route handlers; catalogue pages statically generated and revalidated on change.'],
+  ['Installable app', 'Progressive web app: manifest, service worker, offline shell, Web Push (VAPID). One codebase with the website.'],
+  ['Supabase', 'Postgres · Auth (phone OTP, email magic link, staff accounts) · Storage (product-images public, sketches private) · Row Level Security · pg_cron + Edge Functions · Realtime.'],
+  ['Payments', 'Paystack: cards, MTN MoMo, Telecel Cash, AirtelTigo Money. Webhooks confirm into the database.'],
+  ['Messaging', 'WhatsApp Cloud API (templates) · SMS via Hubtel or Arkesel · transactional email (Resend or Postmark) · Web Push.'],
+  ['Inbox + social', 'Meta Graph API for Instagram/Messenger DMs and Commerce catalogue feed.'],
+  ['Secrets', 'API keys in Vercel environment variables only; service-role key never sent to the browser.']
+]);
+
+const DATA_TECH = T([
+  ['Engine', 'Postgres via Supabase. UUID primary keys, created_at / updated_at on every table.'],
+  ['Money', 'Stored as integer pesewas (GHS × 100) to avoid rounding.'],
+  ['Integrity', 'Foreign keys with ON DELETE RESTRICT on orders and payments; nothing financial is ever hard-deleted.']
+]);
+
+const SEC_TECH = T([
+  ['Row Level Security', 'Policies on every table read role and store_id from the signed-in user\u2019s JWT. Clients read only rows where client_id = auth.uid().'],
+  ['Store scope', 'Staff policies: store_id = staff.store_id; stylists also limited to clients.stylist_id = staff.id. Owner role bypasses scope.'],
+  ['Payments', 'PCI DSS handled by Paystack. Ivié keeps only reference, amount, last four digits and a reusable authorization_code.'],
+  ['Audit', 'Triggers write activity_log (actor, action, entity, before, after, IP). Table is insert-only for every role.'],
+  ['Backups', 'Supabase daily backups with point-in-time recovery; monthly restore test.'],
+  ['Compliance', 'Registered with Ghana\u2019s Data Protection Commission (Act 843). Staff sign-in with two-step verification.']
+]);
+
+const ROLE_COLS = ['All stores', 'Own store', 'Assigned clients', 'Payments', 'Reports', 'Activity log'];
+const ROLES = [
+  ['Owner', [2, 2, 2, 2, 2, 2]],
+  ['Store manager', [0, 2, 2, 1, 1, 1]],
+  ['Stylist', [0, 1, 2, 0, 0, 0]],
+  ['Atelier', [0, 1, 1, 0, 0, 0]],
+  ['Client', [0, 0, 0, 1, 0, 0]]
+];
+const CELL = [
+  { bg: 'transparent', border: 'rgba(217,208,196,0.25)', label: 'No access' },
+  { bg: 'transparent', border: '#A8865A', label: 'View only' },
+  { bg: '#A8865A', border: '#A8865A', label: 'Full access' }
+];
+
+function rel(el, box) {
+  const r = el.getBoundingClientRect();
+  return { l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top, cx: (r.left + r.right) / 2 - box.left, cy: (r.top + r.bottom) / 2 - box.top };
+}
+function elbow(a, b) {
+  if (b.l >= a.r - 2) { const m = (a.r + b.l) / 2; return { d: `M${a.r} ${a.cy}H${m}V${b.cy}H${b.l}`, p: [[a.r, a.cy], [b.l, b.cy]] }; }
+  if (b.r <= a.l + 2) { const m = (a.l + b.r) / 2; return { d: `M${a.l} ${a.cy}H${m}V${b.cy}H${b.r}`, p: [[a.l, a.cy], [b.r, b.cy]] }; }
+  if (b.t >= a.b) { const m = (a.b + b.t) / 2; return { d: `M${a.cx} ${a.b}V${m}H${b.cx}V${b.t}`, p: [[a.cx, a.b], [b.cx, b.t]] }; }
+  const m = (a.t + b.b) / 2; return { d: `M${a.cx} ${a.t}V${m}H${b.cx}V${b.b}`, p: [[a.cx, a.t], [b.cx, b.b]] };
+}
+
+class Component extends DCLogic {
+  state = { sel: 'orders', arch: [], data: [], narrow: false, play: null, step: -1 };
+  archRef = React.createRef();
+  dataRef = React.createRef();
+
+  componentDidMount() {
+    this.measure = this.measure.bind(this);
+    this.ro = new ResizeObserver(() => this.measure());
+    [this.archRef, this.dataRef].forEach(r => r.current && this.ro.observe(r.current));
+    setTimeout(this.measure, 200);
+    if (document.fonts) document.fonts.ready.then(() => this.measure());
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); clearInterval(this.timer); }
+  componentDidUpdate(pp, ps) { if (ps.sel !== this.state.sel) this.measure(); }
+
+  measure() {
+    const next = {};
+    const A = this.archRef.current;
+    if (A) {
+      const box = A.getBoundingClientRect();
+      const narrow = box.width < 600;
+      next.narrow = narrow;
+      next.arch = narrow ? [] : ARCH_EDGES.map(([x, y]) => {
+        const ex = A.querySelector(`[data-node="${x}"]`), ey = A.querySelector(`[data-node="${y}"]`);
+        return ex && ey ? elbow(rel(ex, box), rel(ey, box)) : null;
+      }).filter(Boolean);
+    }
+    const D = this.dataRef.current;
+    if (D) {
+      const box = D.getBoundingClientRect();
+      const src = D.querySelector(`[data-entity="${this.state.sel}"]`);
+      next.data = !src ? [] : LINKS[this.state.sel].map(id => {
+        const el = D.querySelector(`[data-entity="${id}"]`);
+        if (!el) return null;
+        const a = rel(src, box), b = rel(el, box);
+        return `M${a.cx} ${a.cy}L${b.cx} ${b.cy}`;
+      }).filter(Boolean);
+    }
+    if (JSON.stringify(next) !== JSON.stringify({ narrow: this.state.narrow, arch: this.state.arch, data: this.state.data })) this.setState(next);
+  }
+
+  playFlow(id, len) {
+    clearInterval(this.timer);
+    if (this.state.play === id) { this.setState({ play: null, step: -1 }); return; }
+    this.setState({ play: id, step: 0 });
+    this.timer = setInterval(() => {
+      const s = this.state.step + 1;
+      if (s > len + 1) { clearInterval(this.timer); this.setState({ play: null, step: -1 }); return; }
+      this.setState({ step: s });
+    }, 900);
+  }
+
+  svg(children) {
+    return React.createElement('svg', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'visible', zIndex: 0 } }, children);
+  }
+
+  renderVals() {
+    const { sel, play, step } = this.state;
+    const techOpen = !!this.props.openTechnical;
+    const linked = new Set(LINKS[sel]);
+    const select = id => () => this.setState({ sel: id });
+
+    const archLines = this.svg(this.state.arch.flatMap((e, i) => [
+      React.createElement('path', { key: 'p' + i, d: e.d, fill: 'none', stroke: '#A8865A', strokeWidth: 1.25 }),
+      ...e.p.map((pt, j) => React.createElement('circle', { key: 'c' + i + j, cx: pt[0], cy: pt[1], r: 3, fill: '#A8865A' }))
+    ]));
+    const dataLines = this.svg(this.state.data.map((d, i) => React.createElement('path', { key: i, d, fill: 'none', stroke: '#A8865A', strokeWidth: 1, strokeOpacity: 0.7 })));
+
+    const clusters = CLUSTERS.map(([name, items]) => ({
+      name,
+      items: items.map(([id, n]) => {
+        const on = id === sel, rl = linked.has(id);
+        return {
+          id, name: n, on, count: String(LINKS[id].length), onSelect: select(id),
+          bg: on ? '#141210' : rl ? '#F3EADC' : '#FBF8F3',
+          fg: on ? '#F6F1EA' : '#141210',
+          border: on ? '#141210' : rl ? '#A8865A' : '#D9D0C4',
+          sub: on ? '#D9D0C4' : '#6B6056'
+        };
+      })
+    }));
+
+    const flows = FLOWS.map((f, fi) => {
+      const live = play === f.id;
+      return {
+        n: String(fi + 1).padStart(2, '0'), title: f.title, tech: T(f.tech),
+        playLabel: live ? 'Stop' : 'Walk through',
+        onPlay: () => this.playFlow(f.id, f.steps.length),
+        steps: f.steps.map(([w, who, text, chips], i) => {
+          const done = live && i <= step, cur = live && i === step;
+          return {
+            num: String(i + 1), who, text, chips: chips || [], hasChips: !!chips, stamp: !!f.stamp,
+            whoBg: WHO[w][0], whoFg: WHO[w][1],
+            dotBg: done ? '#A8865A' : '#F6F1EA', dotFg: done ? '#F6F1EA' : '#2B211B',
+            lineBg: i === f.steps.length - 1 ? 'transparent' : (live && i < step ? '#A8865A' : '#D9D0C4'),
+            cardBg: cur ? '#F3EADC' : '#FBF8F3', cardBorder: cur ? '#A8865A' : '#D9D0C4'
+          };
+        })
+      };
+    });
+
+    return {
+      techOpen, narrow: this.state.narrow,
+      archRef: this.archRef, dataRef: this.dataRef, archLines, dataLines,
+      archTech: ARCH_TECH, dataTech: DATA_TECH, secTech: SEC_TECH,
+      clusters,
+      selName: NAMES[sel], selPlain: ENT[sel][0], selTable: sel, selCols: ENT[sel][1],
+      selLinks: LINKS[sel].map(id => ({ name: NAMES[id], onSelect: select(id) })),
+      flows,
+      roleCols: ROLE_COLS,
+      roles: ROLES.map(([name, c]) => ({ name, cells: c.map(v => CELL[v]) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

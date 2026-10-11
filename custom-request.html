@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · Begin your custom piece</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+::selection{background:#D9D0C4;color:#141210;}
+input::placeholder,textarea::placeholder{color:#8C7F72;}
+@keyframes ivie-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes ivie-ring{0%{transform:scale(0.42);opacity:0}25%{opacity:0.8}100%{transform:scale(1.18);opacity:0}}
+@media (prefers-reduced-motion: reduce){[data-ring]{animation:none!important;opacity:0.35!important}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F6F1EA;color:#141210;font-family:'Manrope',sans-serif;font-size:15px;display:flex;flex-direction:column;">
+  <header style="position:sticky;top:0;z-index:20;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;height:68px;padding:0 clamp(8px,3vw,40px);border-bottom:1px solid #D9D0C4;background:#F6F1EA;">
+    <button onClick="{{ back }}" style="justify-self:start;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 8px;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="20" y1="12" x2="5" y2="12"></line><polyline points="11 6 5 12 11 18"></polyline></svg>
+      <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}"><span>{{ backLabel }}</span></sc-if>
+    </button>
+    <a href="/" aria-label="Ivié home" style="font-family:'Cormorant Garamond',serif;font-size:{{ wmSize }};letter-spacing:0.42em;padding-left:0.42em;color:#141210;text-decoration:none;line-height:1;">IVIÉ</a>
+    <span style="justify-self:end;padding:0 8px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">{{ headRight }}</span>
+  </header>
+
+  <div style="flex:1;display:flex;align-items:flex-start;">
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <aside aria-hidden="true" style="flex:0 0 42%;position:sticky;top:68px;height:calc(100vh - 68px);overflow:hidden;background:#2B211B;">
+        <sc-for list="{{ panels }}" as="pn" hint-placeholder-count="1">
+          <img src="{{ pn.src }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);opacity:{{ pn.op }};transform:scale({{ pn.sc }});transition:opacity 900ms cubic-bezier(0.22,1,0.36,1), transform 2200ms cubic-bezier(0.22,1,0.36,1);">
+        </sc-for>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,16,13,0.85) 0%, rgba(20,16,13,0.15) 55%, rgba(20,16,13,0) 100%);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,3vw,48px);color:#F6F1EA;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">The Atelier · Custom request</span>
+          <span style="max-width:400px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(26px,2.4vw,34px);line-height:1.2;text-wrap:balance;">{{ panelLine }}</span>
+        </div>
+      </aside>
+    </sc-if>
+
+    <main style="flex:1;min-width:0;">
+      <div style="width:100%;max-width:640px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(20px,4vw,48px) 0;box-sizing:border-box;display:flex;flex-direction:column;gap:28px;min-height:calc(100vh - 68px);">
+        <sc-if value="{{ inForm }}" hint-placeholder-val="{{ true }}">
+          <div role="list" aria-label="Progress" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;">
+            <sc-for list="{{ progress }}" as="pg" hint-placeholder-count="5">
+              <div role="listitem" aria-current="{{ pg.cur }}" style="display:flex;flex-direction:column;gap:10px;">
+                <span style="height:2px;background:#D9D0C4;position:relative;overflow:hidden;border-radius:1px;"><span style="position:absolute;inset:0;background:#141210;transform:scaleX({{ pg.fill }});transform-origin:left;transition:transform 600ms cubic-bezier(0.22,1,0.36,1);"></span></span>
+                <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:{{ pg.c }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ pg.label }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showHead }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">{{ eyebrow }}</span>
+            <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,3.8vw,52px);line-height:1.04;letter-spacing:-0.01em;text-wrap:balance;">{{ title }}</h1>
+            <p style="margin:2px 0 0;font-size:14px;line-height:1.65;color:#2B211B;text-wrap:pretty;">{{ lede }}</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:32px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">The occasion</span>
+              <div role="radiogroup" aria-label="Occasion" style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ occasions }}" as="o" hint-placeholder-count="5">
+                  <button onClick="{{ o.pick }}" role="radio" aria-checked="{{ o.onStr }}" style="min-height:48px;padding:0 18px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:14px;transition:background-color 200ms, color 200ms;">{{ o.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:10px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">The date</span>
+              <input type="date" value="{{ date }}" min="{{ minDate }}" onChange="{{ setDate }}" aria-invalid="{{ dateInv }}" style="width:100%;box-sizing:border-box;height:56px;padding:0 14px;background:#FBF8F3;border:1px solid {{ dateLine }};border-radius:2px;font-family:'Manrope',sans-serif;font-size:16px;color:#141210;" style-focus="border-color:#141210;">
+              <span style="display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.6;color:{{ dateNoteC }};"><span style="flex:0 0 6px;height:6px;margin-top:7px;border-radius:50%;background:{{ dateDot }};"></span>{{ dateNote }}</span>
+            </label>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:28px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;"><span>Reference images</span><span style="text-transform:none;letter-spacing:0;font-weight:400;font-size:12px;">{{ refNote }}</span></span>
+              <div style="display:grid;grid-template-columns:repeat({{ refCols }},minmax(0,1fr));gap:8px;">
+                <sc-for list="{{ refs }}" as="r" hint-placeholder-count="3">
+                  <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;">
+                    <img src="{{ r.src }}" alt="{{ r.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ r.pos }};filter:saturate(0.9) contrast(1.02) sepia(0.06);">
+                    <button onClick="{{ r.remove }}" aria-label="Remove this image" style="position:absolute;top:6px;right:6px;width:44px;height:44px;border-radius:50%;background:rgba(246,241,234,0.92);border:0;color:#141210;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
+                  </div>
+                </sc-for>
+                <label style="position:relative;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:8px;border:1px dashed #A8865A;border-radius:2px;background:#FBF8F3;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-align:center;color:#141210;" style-hover="background:#ECE4D8;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>Add images</span>
+                  <input type="file" accept="image/*" multiple="" onChange="{{ addRefs }}" aria-label="Upload reference images" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;">
+                </label>
+              </div>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:10px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Notes for your designer</span>
+              <textarea value="{{ notes }}" onChange="{{ setNotes }}" rows="5" placeholder="Colours, sleeves, length, what you love or would never wear" style="width:100%;box-sizing:border-box;padding:14px;background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;font-family:'Manrope',sans-serif;font-size:16px;line-height:1.6;color:#141210;resize:vertical;" style-focus="border-color:#141210;"></textarea>
+            </label>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+          <div role="radiogroup" aria-label="Fabric family" style="display:grid;grid-template-columns:repeat({{ fabCols }},minmax(0,1fr));gap:22px 12px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <sc-for list="{{ fabrics }}" as="f" hint-placeholder-count="5">
+              <button onClick="{{ f.open }}" role="radio" aria-checked="{{ f.onStr }}" aria-label="{{ f.aria }}" style="display:flex;flex-direction:column;gap:10px;padding:0;background:none;border:0;cursor:pointer;text-align:left;color:#141210;font-family:'Manrope',sans-serif;">
+                <span style="position:relative;display:block;width:100%;aspect-ratio:1;border-radius:2px;outline:1px solid {{ f.ring }};outline-offset:4px;transition:outline-color 250ms;">
+                  <span style="position:absolute;inset:0;border-radius:2px;background:{{ f.bg }};filter:saturate(0.9) contrast(1.02) sepia(0.06);"></span>
+                  <sc-if value="{{ f.on }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:#141210;color:#F6F1EA;display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="5 12 10 17 19 7"></polyline></svg></span></sc-if>
+                  <span style="position:absolute;left:8px;bottom:8px;display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:2px;background:rgba(246,241,234,0.9);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><line x1="16" y1="16" x2="20.5" y2="20.5"></line></svg>Close-up</span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:3px;"><span style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.15;">{{ f.k }}</span><span style="font-size:12px;color:#6B6056;">{{ f.from }}</span></span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+          <div role="radiogroup" aria-label="Measurements" style="display:flex;flex-direction:column;gap:10px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <button onClick="{{ pickSaved }}" role="radio" aria-checked="{{ savedStr }}" style="display:flex;flex-direction:column;gap:18px;width:100%;padding:20px;background:{{ savedBg }};color:#141210;border:1px solid {{ savedLine }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;text-align:left;transition:border-color 250ms, background-color 250ms;">
+              <span style="display:flex;align-items:flex-start;gap:14px;">
+                <span style="flex:0 0 18px;height:18px;margin-top:4px;border-radius:50%;border:1px solid #141210;display:flex;align-items:center;justify-content:center;"><span style="width:9px;height:9px;border-radius:50%;background:{{ savedDot }};"></span></span>
+                <span style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;">Use my saved measurements</span><span style="font-size:13px;color:#6B6056;">Taken at East Legon on 14 March 2026</span></span>
+              </span>
+              <sc-if value="{{ savedOn }}" hint-placeholder-val="{{ true }}">
+                <span style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 12px;padding:16px 0 0 32px;border-top:1px solid #D9D0C4;">
+                  <sc-for list="{{ meas }}" as="m" hint-placeholder-count="6">
+                    <span style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">{{ m.k }}</span><span style="font-size:16px;">{{ m.v }}</span></span>
+                  </sc-for>
+                </span>
+              </sc-if>
+            </button>
+            <button onClick="{{ pickStoreMeas }}" role="radio" aria-checked="{{ storeMStr }}" style="display:flex;align-items:flex-start;gap:14px;width:100%;padding:20px;background:{{ storeMBg }};color:#141210;border:1px solid {{ storeMLine }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;text-align:left;transition:border-color 250ms, background-color 250ms;">
+              <span style="flex:0 0 18px;height:18px;margin-top:4px;border-radius:50%;border:1px solid #141210;display:flex;align-items:center;justify-content:center;"><span style="width:9px;height:9px;border-radius:50%;background:{{ storeMDot }};"></span></span>
+              <span style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;">Book a measuring session in store</span><span style="font-size:13px;line-height:1.6;color:#6B6056;">We take them at your consultation. It adds about 20 minutes.</span></span>
+            </button>
+            <span style="font-size:13px;line-height:1.6;color:#6B6056;padding-top:6px;">Either way, we measure again at your first fitting.</span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s4book }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:28px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Boutique</span>
+              <div role="radiogroup" aria-label="Boutique" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+                <sc-for list="{{ stores }}" as="o" hint-placeholder-count="2">
+                  <button onClick="{{ o.pick }}" role="radio" aria-checked="{{ o.onStr }}" style="display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:{{ o.bg }};color:#141210;border:1px solid {{ o.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;text-align:left;transition:border-color 200ms, background-color 200ms;">
+                    <span style="display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;">{{ o.name }}</span><span style="width:16px;height:16px;border-radius:50%;border:1px solid #141210;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:8px;height:8px;border-radius:50%;background:{{ o.dot }};"></span></span></span>
+                    <span style="font-size:13px;color:#2B211B;">{{ o.addr }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Day</span>
+              <div role="radiogroup" aria-label="Day" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * clamp(20px,4vw,48px));padding:2px clamp(20px,4vw,48px);">
+                <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+                  <button onClick="{{ d.pick }}" role="radio" aria-checked="{{ d.onStr }}" aria-label="{{ d.aria }}" style="flex:0 0 76px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 0;background:{{ d.bg }};color:{{ d.fg }};border:1px solid {{ d.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;transition:background-color 200ms, color 200ms;">
+                    <span style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;">{{ d.top }}</span>
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1;">{{ d.num }}</span>
+                    <span style="font-size:11px;">{{ d.mon }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:{{ slotLblC }};">{{ slotLabel }}</span>
+              <div role="radiogroup" aria-label="Time" style="display:grid;grid-template-columns:repeat({{ slotCols }},minmax(0,1fr));gap:6px;">
+                <sc-for list="{{ slots }}" as="t" hint-placeholder-count="8">
+                  <button onClick="{{ t.pick }}" role="radio" aria-checked="{{ t.onStr }}" aria-disabled="{{ t.offStr }}" aria-label="{{ t.aria }}" style="min-height:48px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.line }};border-radius:2px;cursor:{{ t.cur }};font-family:'Manrope',sans-serif;font-size:14px;text-decoration:{{ t.strike }};transition:background-color 200ms, color 200ms;">{{ t.t }}</button>
+                </sc-for>
+              </div>
+              <span style="font-size:12px;color:#6B6056;">{{ slotNote }}</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s4pay }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:28px;animation:ivie-rise 700ms cubic-bezier(0.22,1,0.36,1) both;">
+            <div style="display:flex;flex-direction:column;gap:18px;padding:clamp(20px,3vw,28px);background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Deposit · 50 percent</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.1;">Deposit {{ depTxt }} <span style="color:#6B6056;">of {{ totTxt }}</span></span>
+              <span aria-hidden="true" style="position:relative;height:4px;background:#D9D0C4;border-radius:2px;overflow:hidden;"><span style="position:absolute;top:0;bottom:0;left:0;width:50%;background:#141210;"></span></span>
+              <div style="display:flex;flex-direction:column;font-size:14px;">
+                <span style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #D9D0C4;"><span style="color:#2B211B;">{{ pieceLine }}</span><span>{{ totTxt }}</span></span>
+                <span style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #D9D0C4;"><span style="color:#2B211B;">Due today</span><span style="font-weight:500;">{{ depTxt }}</span></span>
+                <span style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #D9D0C4;"><span style="color:#2B211B;">Balance, at collection</span><span>{{ depTxt }}</span></span>
+              </div>
+              <span style="font-size:12px;line-height:1.6;color:#6B6056;">The final price is confirmed at your consultation. If it changes, we adjust the balance, never the deposit.</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Pay with Mobile Money</span>
+              <div role="radiogroup" aria-label="Network" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;">
+                <sc-for list="{{ providers }}" as="pv" hint-placeholder-count="3">
+                  <button onClick="{{ pv.pick }}" role="radio" aria-checked="{{ pv.onStr }}" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:10px;min-height:72px;padding:12px;background:{{ pv.bg }};color:#141210;border:1px solid {{ pv.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:13px;font-weight:500;line-height:1.25;text-align:left;transition:border-color 200ms;"><span style="width:10px;height:10px;border-radius:50%;background:{{ pv.dot }};"></span>{{ pv.name }}</button>
+                </sc-for>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:8px;">
+                <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Mobile Money number</span>
+                <input value="{{ momo }}" onChange="{{ setMomo }}" type="tel" inputMode="tel" autoComplete="tel" placeholder="024 000 0000" aria-invalid="{{ momoInv }}" style="width:100%;box-sizing:border-box;height:52px;padding:0 14px;background:#FBF8F3;border:1px solid {{ momoLine }};border-radius:2px;font-family:'Manrope',sans-serif;font-size:16px;color:#141210;" style-focus="border-color:#141210;">
+                <sc-if value="{{ momoErr }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#8A3B2E;">Choose your network and add the 10-digit number for your wallet.</span></sc-if>
+              </label>
+              <span style="font-size:13px;line-height:1.6;color:#2B211B;">We send a prompt to your phone. Approve it with your PIN.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isWaiting }}" hint-placeholder-val="{{ false }}">
+          <div role="status" aria-live="polite" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;margin-top:clamp(12px,4vw,40px);padding:clamp(32px,5vw,56px) 16px;background:#FBF8F3;border:1px solid #D9D0C4;border-radius:2px;">
+            {{ waitAnim }}
+            <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,36px);line-height:1.1;text-wrap:balance;">Approve {{ depTxt }} on your phone</h2>
+            <p style="margin:0;max-width:380px;font-size:14px;line-height:1.7;color:#2B211B;">We have sent a prompt to {{ momo }}{{ provSuffix }}. Enter your PIN to secure your place with Selorm.</p>
+            <button onClick="{{ back }}" style="min-height:44px;padding:0;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:13px;"><span style="border-bottom:1px solid #D9D0C4;padding-bottom:2px;">Change number</span></button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:32px;padding:clamp(12px,3vw,32px) 0 clamp(48px,6vw,80px);animation:ivie-rise 900ms cubic-bezier(0.22,1,0.36,1) both;">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <span style="width:52px;height:52px;border-radius:50%;border:1px solid #A8865A;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.5" aria-hidden="true"><polyline points="5 12 10 17 19 7"></polyline></svg></span>
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Request AT-0217 · Deposit received</span>
+              <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,5vw,64px);line-height:1.02;letter-spacing:-0.015em;text-wrap:balance;">Selorm, your designer, will see you on {{ dayName }}.</h1>
+              <p style="margin:0;font-size:15px;line-height:1.7;color:#2B211B;text-wrap:pretty;">{{ doneLede }}</p>
+            </div>
+            <div style="display:flex;gap:16px;align-items:flex-start;padding:20px;background:#ECE4D8;border-radius:2px;">
+              <span style="flex:0 0 48px;height:48px;border-radius:50%;background:#2B211B;color:#F6F1EA;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;">SA</span>
+              <span style="display:flex;flex-direction:column;gap:6px;min-width:0;">
+                <span style="font-size:14px;font-weight:500;">Selorm Agbeko <span style="font-weight:400;color:#6B6056;">· Head designer</span></span>
+                <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.4;">“I have your references already. If you can, bring the shoes you plan to wear.”</span>
+              </span>
+            </div>
+            <div style="display:flex;flex-direction:column;border-top:1px solid #D9D0C4;">
+              <sc-for list="{{ summary }}" as="r" hint-placeholder-count="5">
+                <span style="display:grid;grid-template-columns:minmax(110px,0.4fr) minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid #D9D0C4;font-size:14px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;padding-top:2px;">{{ r.k }}</span><span style="line-height:1.55;">{{ r.v }}</span></span>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="flex-shrink:0;"><path d="M4.5 20l1.2-3.7A8 8 0 1 1 8.4 19z"></path></svg>
+              <span>We will remind you on WhatsApp the day before.</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <a href="/custom-tracker" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:#141210;color:#F6F1EA;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="background:#2B211B;color:#F6F1EA;">Track your piece</a>
+              <a href="{{ ics }}" download="ivie-consultation.ics" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border:1px solid #D9D0C4;border-radius:2px;color:#141210;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="border-color:#141210;color:#141210;">Add to calendar</a>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:auto;position:sticky;bottom:0;z-index:5;display:flex;flex-direction:column;gap:10px;margin-left:calc(-1 * clamp(20px,4vw,48px));margin-right:calc(-1 * clamp(20px,4vw,48px));padding:14px clamp(20px,4vw,48px) calc(16px + env(safe-area-inset-bottom));background:rgba(246,241,234,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid #D9D0C4;">
+            <button onClick="{{ next }}" style="display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 24px;background:#141210;color:#F6F1EA;border:1px solid #141210;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:background-color 250ms;" style-hover="background:#2B211B;">{{ ctaLabel }}</button>
+            <span style="font-size:12px;color:#6B6056;text-align:center;">{{ ctaNote }}</span>
+          </div>
+        </sc-if>
+      </div>
+    </main>
+  </div>
+
+  <sc-if value="{{ zoomOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeZoom }}" style="position:fixed;inset:0;z-index:80;background:rgba(20,18,16,0.5);"></div>
+    <div style="position:fixed;inset:0;z-index:81;display:flex;align-items:{{ zAlign }};justify-content:center;padding:{{ zPad }};pointer-events:none;">
+      <div role="dialog" aria-modal="true" aria-label="{{ zName }}, close-up" style="pointer-events:auto;position:relative;width:min(860px,100%);max-height:92vh;overflow-y:auto;background:#FBF8F3;border-radius:2px;display:grid;grid-template-columns:{{ zCols }};animation:ivie-rise 500ms cubic-bezier(0.22,1,0.36,1) both;">
+        <div style="position:relative;aspect-ratio:{{ zRatio }};overflow:hidden;background:#D9D0C4;">
+          <span style="position:absolute;inset:-4%;background:{{ zBg }};filter:saturate(0.9) contrast(1.02) sepia(0.06);"></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;padding:clamp(22px,3vw,36px);">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Close-up · {{ zFrom }}</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3.4vw,44px);line-height:1.05;">{{ zName }}</h2>
+          <p style="margin:0;font-size:14px;line-height:1.7;color:#2B211B;text-wrap:pretty;">{{ zDesc }}</p>
+          <div style="display:flex;flex-direction:column;font-size:14px;">
+            <span style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-top:1px solid #D9D0C4;"><span style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Hand-feel</span><span>{{ zHand }}</span></span>
+            <span style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;"><span style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Best for</span><span>{{ zBest }}</span></span>
+          </div>
+          <button onClick="{{ chooseZoom }}" style="margin-top:auto;display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;background:#141210;color:#F6F1EA;border:0;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;" style-hover="background:#2B211B;">{{ zCta }}</button>
+        </div>
+        <button onClick="{{ closeZoom }}" aria-label="Close" style="position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;background:rgba(251,248,243,0.94);border:0;color:#141210;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg></button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;jumpTo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Live flow&quot;,&quot;Occasion&quot;,&quot;Inspiration&quot;,&quot;Fabric&quot;,&quot;Measurements&quot;,&quot;Consultation&quot;,&quot;Deposit&quot;,&quot;Confirmation&quot;],&quot;default&quot;:&quot;Live flow&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+const IMG = (id, w) => (/^\d+$/.test(id) ? 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&' : 'https://images.unsplash.com/' + id + '?') + 'w=' + (w || 1400) + '&q=80&auto=format&fit=crop';
+const ID = { notes: 'photo-1787505136259-5195dfbfcd01', cut: 'photo-1787505136265-9a99dad3bbac', studio: 'photo-1787505136296-1e8f0750e5ff', rail: 'photo-1769107805465-bfd41863f1a0', slip: 'photo-1594737996820-af7654631790', coat: '7468092', ivory: '6766741', linen: 'photo-1616617749174-a2a1f2134674', red: '7020558', braid: '6848260' };
+const V6P = 'https://images.pexels.com/videos/9690685/pexels-photo-9690685.jpeg?auto=compress&w=1260';
+const PANELS = [[IMG(ID.notes), 'Every piece begins with the day it is made for.'], [V6P, 'Bring us the feeling. We will find the shape.'], [IMG(ID.cut), 'Cut by hand, in Accra, once you approve the sketch.'], [IMG(ID.studio), 'Measured, then fitted until it moves the way you do.'], [IMG(ID.rail), 'Forty-five minutes with your designer, and a sketch to take home.']];
+const STEPS = ['Occasion', 'Inspiration', 'Fabric', 'Measurements', 'Consultation'];
+const OCC = ['Wedding guest', 'Bridal party', 'Milestone birthday', 'Corporate gala', 'Something else'];
+const KENTE = s => 'repeating-linear-gradient(0deg, rgba(20,18,16,0.28) 0 ' + 3 * s + 'px, transparent ' + 3 * s + 'px ' + 26 * s + 'px), repeating-linear-gradient(90deg, #C9A227 0 ' + 16 * s + 'px, #1F1C1A ' + 16 * s + 'px ' + 20 * s + 'px, #3E6B48 ' + 20 * s + 'px ' + 34 * s + 'px, #1F1C1A ' + 34 * s + 'px ' + 38 * s + 'px, #A6372B ' + 38 * s + 'px ' + 50 * s + 'px, #1F1C1A ' + 50 * s + 'px ' + 54 * s + 'px)';
+const FAB = [
+  { k: 'Silk', id: 'slip', pos: '30% 62%', price: 6000, desc: 'Sand-washed mulberry silk, heavy enough to fall cleanly and light enough to move with you.', hand: 'Cool and fluid, with a soft liquid sheen', best: 'Slip dresses, bias cuts, evening' },
+  { k: 'Crepe', id: 'coat', pos: '50% 72%', price: 6000, desc: 'Double-faced crepe with a fine, dry grain. It holds a strong shoulder and a clean line.', hand: 'Matte, substantial, quietly structured', best: 'Gowns, tailoring, column shapes' },
+  { k: 'Lace', id: 'ivory', pos: '50% 62%', price: 6800, desc: 'French corded lace, lined in silk. Delicate to look at, made to be danced in.', hand: 'Textured, soft, with a raised cord', best: 'Bridal party, wedding guest' },
+  { k: 'Kente-inspired weave', kente: 1, price: 7200, desc: 'Woven in narrow strips in Bonwire, then joined by hand. Used whole, or as a trim that shows only when you move.', hand: 'Crisp, dense, with a gentle ridge', best: 'Statement pieces, trims, menswear' },
+  { k: 'Linen', id: 'linen', pos: '50% 88%', price: 4500, desc: 'Washed Irish linen that breathes in the heat and softens with every wear.', hand: 'Dry, airy, relaxed', best: 'Day pieces, two-piece sets' }
+];
+const fabBg = (f, z) => f.kente ? KENTE(z ? 2 : 1) : 'url(' + IMG(ID[f.id], z ? 2000 : 900) + ') ' + f.pos + ' / ' + (z ? '520%' : '340%') + ' auto no-repeat, #D9D0C4';
+const SAMPLE = [{ src: IMG(ID.red, 600), pos: '50% 30%', alt: 'Reference: a gown against a red backdrop' }, { src: IMG(ID.ivory, 600), pos: '50% 25%', alt: 'Reference: ivory lace, worn' }, { src: IMG(ID.braid, 600), pos: '50% 40%', alt: 'Reference: a braided profile in bronze' }];
+const MEAS = [['Bust', '88 cm'], ['Waist', '71 cm'], ['Hips', '97 cm'], ['Shoulder', '39 cm'], ['Height', '168 cm'], ['Usual size', 'M']];
+const STORES = { 'East Legon': '12 Lagos Avenue, East Legon, Accra', 'Spintex': 'Coastal Estate Road, Spintex, Accra' };
+const PROV = [{ k: 'mtn', name: 'MTN MoMo', dot: '#E8B800' }, { k: 'telecel', name: 'Telecel Cash', dot: '#C8282E' }, { k: 'at', name: 'AirtelTigo Money', dot: '#2E4A9E' }];
+const DN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const pad = n => String(n).padStart(2, '0');
+const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const longDay = d => DN[d.getDay()] + ' ' + d.getDate() + ' ' + MN[d.getMonth()];
+const digits = v => (v || '').replace(/\D/g, '');
+const JUMP = { Occasion: [0, 'book'], Inspiration: [1, 'book'], Fabric: [2, 'book'], Measurements: [3, 'book'], Consultation: [4, 'book'], Deposit: [4, 'pay'] };
+function q() { try { return Object.fromEntries(new URLSearchParams(location.search)); } catch (e) { return {}; } }
+class Component extends DCLogic {
+  state = (() => {
+    const p = q();
+    return { mobile: window.innerWidth < 768, step: 0, sub: 'book', phase: 'form', tried: false,
+      occ: OCC.includes(p.occasion) ? p.occasion : 'Wedding guest', date: '2026-12-12', refs: SAMPLE.slice(),
+      notes: 'Something like the first image, with long sleeves. Floor length, and an open back.',
+      fabric: 'Silk', zoom: null, meas: 'saved', store: p.store === 'Spintex' ? 'Spintex' : 'East Legon', dayIdx: -1, slot: '', prov: 'mtn', momo: '024 555 0318' };
+  })();
+  componentDidMount() {
+    const d = this.days(), sat = Math.max(0, d.findIndex(x => x.getDay() === 6));
+    this.setState({ dayIdx: sat, slot: this.firstFree(sat, '11:00') });
+    this.onResize = () => { const m = window.innerWidth < 768; if (m !== this.state.mobile) this.setState({ mobile: m }); };
+    this.onKey = e => { if (e.key === 'Escape' && this.state.zoom) this.setState({ zoom: null }); };
+    window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
+    this.applyJump();
+  }
+  componentDidUpdate(pp) { if (pp.jumpTo !== this.props.jumpTo) this.applyJump(); }
+  componentWillUnmount() { clearTimeout(this.t); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
+  applyJump() {
+    const j = this.props.jumpTo ?? 'Live flow';
+    clearTimeout(this.t);
+    if (j === 'Confirmation') return this.setState({ step: 4, sub: 'pay', phase: 'done' });
+    const m = JUMP[j] || [0, 'book'];
+    this.setState({ step: m[0], sub: m[1], phase: 'form', tried: false });
+  }
+  days() { const out = [], n = new Date(); for (let i = 1; i <= 8; i++) { const d = new Date(n); d.setDate(n.getDate() + i); d.setHours(0, 0, 0, 0); out.push(d); } return out; }
+  slots(i) {
+    const d = this.days()[i]; if (!d) return [];
+    const sun = d.getDay() === 0, from = sun ? 13 : 10, to = sun ? 16 : 17, out = [];
+    for (let h = from; h <= to; h++) out.push({ t: pad(h) + ':00', off: (i * 2 + h) % 5 === 0 });
+    return out;
+  }
+  firstFree(i, pref) { const s = this.slots(i), p = s.find(x => x.t === pref && !x.off); return p ? p.t : ((s.find(x => !x.off) || {}).t || ''); }
+  weeks() { const d = new Date(this.state.date + 'T00:00'); if (isNaN(d)) return null; return Math.floor((d - new Date()) / (7 * 864e5)); }
+  valid() {
+    const s = this.state, w = this.weeks();
+    if (s.step === 0) return !!s.occ && w !== null && w >= 0;
+    if (s.step === 4 && s.sub === 'book') return !!s.slot;
+    if (s.step === 4 && s.sub === 'pay') return !!s.prov && digits(s.momo).length >= 10;
+    return true;
+  }
+  go(step, sub) { this.setState({ step, sub: sub || 'book', tried: false, phase: 'form' }); window.scrollTo({ top: 0 }); }
+  next = () => {
+    const s = this.state;
+    if (!this.valid()) return this.setState({ tried: true });
+    if (s.step < 4) return this.go(s.step + 1);
+    if (s.sub === 'book') return this.go(4, 'pay');
+    this.setState({ phase: 'waiting' }); window.scrollTo({ top: 0 });
+    this.t = setTimeout(() => { this.setState({ phase: 'done' }); window.scrollTo({ top: 0 }); }, 3800);
+  };
+  back = () => {
+    const s = this.state;
+    if (s.phase === 'waiting') { clearTimeout(this.t); return this.setState({ phase: 'form' }); }
+    if (s.phase === 'done' || s.step === 0) { location.href = '/atelier'; return; }
+    if (s.step === 4 && s.sub === 'pay') return this.go(4, 'book');
+    this.go(s.step - 1);
+  };
+  renderVals() {
+    const s = this.state, mob = s.mobile, form = s.phase === 'form';
+    const fab = FAB.find(f => f.k === s.fabric) || FAB[0];
+    const total = fab.price, dep = total / 2, money = n => 'GHS ' + n.toLocaleString('en-GB');
+    const days = this.days(), day = days[s.dayIdx];
+    const w = this.weeks(), dOk = w !== null && w >= 0;
+    const dateObj = dOk ? new Date(s.date + 'T00:00') : null;
+    const prov = PROV.find(x => x.k === s.prov);
+    const err = s.tried && !this.valid();
+    const panelIdx = s.phase === 'done' ? 4 : s.step;
+    const titles = ['What is the occasion?', 'Show us what you have in mind.', 'Choose a fabric family.', 'Your measurements.', s.sub === 'pay' ? 'Secure your place.' : 'Book your consultation.'];
+    const ledes = ['And when do you need to wear it? Most pieces take about six weeks.', 'Photos, screenshots, a sketch on a napkin. Anything that captures the feeling.', 'Tap a swatch to see it up close. Your designer brings the full range to your consultation.', 'We measure again at every fitting, so this is only a starting point.', s.sub === 'pay' ? 'A 50 percent deposit holds your place in the atelier calendar. The balance is due when you collect.' : 'Forty-five minutes in store with Selorm, your designer.'];
+    const ctas = ['Continue', 'Continue', 'Continue with ' + fab.k, 'Continue', s.sub === 'pay' ? 'Pay deposit ' + money(dep) : 'Continue to deposit'];
+    const notes = ['Next: your inspiration', s.refs.length ? 'Next: fabric' : 'Images are optional. You can bring them along instead.', 'You can change your mind at the consultation.', 'Next: book your consultation', s.sub === 'pay' ? 'You will approve on your phone.' : (day && s.slot ? longDay(day) + ' at ' + s.slot + ', ' + s.store : 'Choose a day and time')];
+    let dateNote = 'Please choose a date in the future.', dateTone = 'err';
+    if (dOk) {
+      if (w >= 6) { dateNote = longDay(dateObj) + '. That gives us ' + w + ' weeks, plenty of time.'; dateTone = 'ok'; }
+      else if (w >= 3) { dateNote = longDay(dateObj) + '. ' + w + ' weeks is close but possible. Your designer will confirm.'; dateTone = 'warn'; }
+      else { dateNote = longDay(dateObj) + '. Under three weeks is a rush piece. We will tell you honestly if we can make it.'; dateTone = 'warn'; }
+    }
+    const slotObj = this.slots(s.dayIdx);
+    const zf = s.zoom ? FAB.find(f => f.k === s.zoom) : null;
+    const ce = React.createElement;
+    const waitAnim = ce('div', { style: { position: 'relative', width: 128, height: 128, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 'aria-hidden': 'true' },
+      ...[0, 1, 2].map(i => ce('span', { key: i, 'data-ring': '', style: { position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid #A8865A', opacity: 0, animation: 'ivie-ring 3.2s cubic-bezier(0.22,1,0.36,1) ' + (i * 1.05) + 's infinite' } })),
+      ce('span', { key: 'c', style: { position: 'relative', width: 56, height: 56, borderRadius: '50%', background: '#141210', color: '#F6F1EA', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+        ce('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5 }, ce('rect', { x: 7, y: 3, width: 10, height: 18, rx: 2 }), ce('line', { x1: 11, y1: 18, x2: 13, y2: 18 }))));
+    const ics = (() => {
+      if (!day || !s.slot) return '#';
+      const ymd = iso(day).replace(/-/g, ''), t0 = s.slot.replace(':', '') + '00', t1 = pad(+s.slot.slice(0, 2) + 1) + '0000';
+      return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ivie//EN', 'BEGIN:VEVENT', 'UID:AT-0217@ivie', 'DTSTART;TZID=Africa/Accra:' + ymd + 'T' + t0, 'DTEND;TZID=Africa/Accra:' + ymd + 'T' + t1, 'SUMMARY:Ivié consultation with Selorm', 'LOCATION:Ivié ' + s.store + ', ' + STORES[s.store], 'END:VEVENT', 'END:VCALENDAR'].join('\r\n'));
+    })();
+    return {
+      desktop: !mob, wmSize: mob ? '20px' : '24px',
+      back: this.back, backLabel: s.step === 0 || s.phase === 'done' ? 'The Atelier' : 'Back',
+      headRight: s.phase === 'done' ? 'Confirmed' : (mob ? (s.step + 1) + ' / 5' : 'Custom request'),
+      panels: PANELS.map((p, i) => ({ src: p[0], op: i === panelIdx ? 1 : 0, sc: i === panelIdx ? 1 : 1.06 })),
+      panelLine: s.phase === 'done' ? 'Made once, for one person.' : PANELS[panelIdx][1],
+      inForm: s.phase !== 'done',
+      progress: STEPS.map((label, i) => ({ label: (i + 1) + '  ' + label, cur: i === s.step ? 'step' : 'false', fill: i <= s.step ? 1 : 0, c: i <= s.step ? '#141210' : '#8C7F72' })),
+      showHead: form, eyebrow: 'Question ' + (s.step + 1) + ' of 5' + (s.step === 4 ? (s.sub === 'pay' ? ' · Deposit' : ' · Booking') : ''),
+      title: titles[s.step], lede: ledes[s.step],
+      s0: form && s.step === 0, s1: form && s.step === 1, s2: form && s.step === 2, s3: form && s.step === 3, s4book: form && s.step === 4 && s.sub === 'book', s4pay: form && s.step === 4 && s.sub === 'pay',
+      occasions: OCC.map(o => { const on = o === s.occ; return { label: o, onStr: String(on), bg: on ? '#141210' : 'transparent', fg: on ? '#F6F1EA' : '#141210', line: on ? '#141210' : '#D9D0C4', pick: () => this.setState({ occ: o }) }; }),
+      date: s.date, minDate: iso(new Date()), setDate: e => this.setState({ date: e.target.value }),
+      dateInv: String(err && s.step === 0), dateLine: err && s.step === 0 ? '#8A3B2E' : '#D9D0C4',
+      dateNote, dateNoteC: dateTone === 'err' ? '#8A3B2E' : '#2B211B', dateDot: dateTone === 'ok' ? '#4F6B4A' : (dateTone === 'warn' ? '#A8865A' : '#8A3B2E'),
+      refCols: mob ? 3 : 4,
+      refs: s.refs.map((r, i) => ({ ...r, remove: () => this.setState(st => ({ refs: st.refs.filter((x, k) => k !== i) })) })),
+      refNote: s.refs.length + (s.refs.length === 1 ? ' image' : ' images') + ' · up to 10',
+      addRefs: e => { const files = Array.from(e.target.files || []).slice(0, 10); const add = files.map(f => ({ src: URL.createObjectURL(f), pos: '50% 50%', alt: 'Your reference: ' + f.name })); e.target.value = ''; this.setState(st => ({ refs: st.refs.concat(add).slice(0, 10) })); },
+      notes: s.notes, setNotes: e => this.setState({ notes: e.target.value }),
+      fabCols: mob ? 2 : 3,
+      fabrics: FAB.map(f => { const on = f.k === s.fabric; return { k: f.k, from: 'Pieces from ' + money(f.price), on, onStr: String(on), aria: f.k + ', open close-up', bg: fabBg(f, false), ring: on ? '#141210' : 'transparent', open: () => this.setState({ zoom: f.k }) }; }),
+      zoomOpen: !!zf, closeZoom: () => this.setState({ zoom: null }),
+      zAlign: mob ? 'flex-end' : 'center', zPad: mob ? '0' : '24px', zCols: mob ? 'minmax(0,1fr)' : 'minmax(0,1.1fr) minmax(0,1fr)', zRatio: mob ? '4/3' : '4/5',
+      zBg: zf ? fabBg(zf, true) : '', zName: zf ? zf.k : '', zDesc: zf ? zf.desc : '', zHand: zf ? zf.hand : '', zBest: zf ? zf.best : '', zFrom: zf ? 'From ' + money(zf.price) : '',
+      zCta: zf ? (zf.k === s.fabric ? 'Selected · close' : 'Choose ' + zf.k) : '',
+      chooseZoom: () => this.setState({ fabric: s.zoom, zoom: null }),
+      savedOn: s.meas === 'saved', savedStr: String(s.meas === 'saved'), savedBg: s.meas === 'saved' ? '#FBF8F3' : 'transparent', savedLine: s.meas === 'saved' ? '#141210' : '#D9D0C4', savedDot: s.meas === 'saved' ? '#141210' : 'transparent',
+      storeMStr: String(s.meas === 'store'), storeMBg: s.meas === 'store' ? '#FBF8F3' : 'transparent', storeMLine: s.meas === 'store' ? '#141210' : '#D9D0C4', storeMDot: s.meas === 'store' ? '#141210' : 'transparent',
+      pickSaved: () => this.setState({ meas: 'saved' }), pickStoreMeas: () => this.setState({ meas: 'store' }),
+      meas: MEAS.map(([k, v]) => ({ k, v })),
+      stores: Object.keys(STORES).map(n => { const on = n === s.store; return { name: n, addr: STORES[n], onStr: String(on), bg: on ? '#FBF8F3' : 'transparent', line: on ? '#141210' : '#D9D0C4', dot: on ? '#141210' : 'transparent', pick: () => this.setState({ store: n }) }; }),
+      days: days.map((d, i) => { const on = i === s.dayIdx; return { top: DN[d.getDay()].slice(0, 3), num: d.getDate(), mon: MN[d.getMonth()].slice(0, 3), aria: longDay(d), onStr: String(on), bg: on ? '#141210' : 'transparent', fg: on ? '#F6F1EA' : '#141210', line: on ? '#141210' : '#D9D0C4', pick: () => this.setState({ dayIdx: i, slot: this.firstFree(i, s.slot) }) }; }),
+      slotCols: mob ? 4 : 4,
+      slots: slotObj.map(z => { const on = z.t === s.slot; return { t: z.t, aria: z.t + (z.off ? ', booked' : ''), onStr: String(on), offStr: String(z.off), bg: on ? '#141210' : 'transparent', fg: on ? '#F6F1EA' : (z.off ? '#8C7F72' : '#141210'), line: on ? '#141210' : (z.off ? '#E6DED3' : '#D9D0C4'), strike: z.off ? 'line-through' : 'none', cur: z.off ? 'default' : 'pointer', pick: () => { if (!z.off) this.setState({ slot: z.t }); } }; }),
+      slotLabel: err && s.sub === 'book' && s.step === 4 ? 'Please choose a time' : 'Time · 45 minutes' + (s.meas === 'store' ? ' plus measuring' : ''), slotLblC: err && s.step === 4 ? '#8A3B2E' : '#6B6056',
+      slotNote: 'Struck-through times are already booked.',
+      depTxt: money(dep), totTxt: money(total), pieceLine: 'Estimated · ' + s.occ.toLowerCase() + ' piece in ' + fab.k.toLowerCase(),
+      providers: PROV.map(x => { const on = x.k === s.prov; return { ...x, onStr: String(on), bg: on ? '#FBF8F3' : 'transparent', line: on ? '#141210' : '#D9D0C4', pick: () => this.setState({ prov: x.k }) }; }),
+      momo: s.momo, setMomo: e => this.setState({ momo: e.target.value }),
+      momoErr: err && s.sub === 'pay', momoInv: String(err && s.sub === 'pay'), momoLine: err && s.sub === 'pay' ? '#8A3B2E' : '#D9D0C4',
+      provSuffix: prov ? ' on ' + prov.name : '',
+      isWaiting: s.phase === 'waiting', waitAnim,
+      isDone: s.phase === 'done',
+      dayName: day ? DN[day.getDay()] : 'Saturday',
+      doneLede: (day ? longDay(day) : 'Saturday') + ' at ' + (s.slot || '11:00') + ', at Ivié ' + s.store + '. Your deposit of ' + money(dep) + ' is received and your place in the atelier calendar is held.',
+      summary: [
+        { k: 'Consultation', v: (day ? longDay(day) : '') + ', ' + s.slot + ' · Ivié ' + s.store },
+        { k: 'Occasion', v: s.occ + (dateObj ? ' · ' + longDay(dateObj) : '') },
+        { k: 'Fabric', v: fab.k },
+        { k: 'Measurements', v: s.meas === 'saved' ? 'Saved, from 14 March 2026' : 'Taken at your consultation' },
+        { k: 'Deposit paid', v: money(dep) + ' of ' + money(total) + ' · ' + (prov ? prov.name : 'Mobile Money') }
+      ],
+      ics,
+      showCta: form, next: this.next, ctaLabel: ctas[s.step], ctaNote: notes[s.step]
+    };
+  }
+}
+</script>
+</body>
+</html>

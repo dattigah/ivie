@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · The Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./ivie-data.js"></script>
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+::selection{background:#D9D0C4;color:#141210;}
+@keyframes ivie-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="background:#F6F1EA;color:#141210;font-family:'Manrope',sans-serif;font-size:15px;overflow-x:clip;">
+  <dc-import name="IvieHeader" transparent-until-id="atelier-hero" hint-size="100%,1px"></dc-import>
+  <main>
+    <section id="atelier-hero" aria-label="The Atelier" style="position:relative;min-height:max(620px,100svh);background:#2B211B;color:#F6F1EA;overflow:hidden;display:flex;align-items:flex-end;">
+      <img src="https://images.pexels.com/videos/9690685/pexels-photo-9690685.jpeg?auto=compress&amp;w=1600" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);">
+      <video data-src="https://www.pexels.com/download/video/9690685/" muted="" loop="" playsinline="" preload="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);opacity:0;transition:opacity 1400ms cubic-bezier(0.22,1,0.36,1);"></video>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,16,13,0.92) 0%, rgba(20,16,13,0.5) 45%, rgba(20,16,13,0.3) 100%);"></div>
+      <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:140px clamp(20px,5vw,72px) clamp(48px,9vh,104px);box-sizing:border-box;display:flex;flex-direction:column;gap:22px;animation:ivie-rise 1100ms cubic-bezier(0.22,1,0.36,1) both;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">The Atelier · Accra</span>
+        <h1 style="margin:0;max-width:880px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(52px,8vw,124px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance;">Made once, for one person.</h1>
+        <p style="margin:0;max-width:460px;font-size:16px;line-height:1.7;text-wrap:pretty;">Custom pieces drawn, cut and fitted by hand in our Accra studio, for the days you will remember.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;">
+          <a href="/custom-request" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#F6F1EA;color:#141210;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background-color 250ms;" style-hover="background:#D9D0C4;color:#141210;">Begin your custom piece</a>
+          <a href="/custom-tracker" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1px solid rgba(246,241,234,0.6);color:#F6F1EA;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background-color 250ms, color 250ms;" style-hover="background:#F6F1EA;color:#141210;">Track your piece</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="About the atelier" style="max-width:1320px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(20px,5vw,72px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center;">
+      <div style="display:flex;flex-direction:column;gap:26px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Above the East Legon boutique</span>
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.4vw,50px);line-height:1.12;letter-spacing:-0.01em;text-wrap:balance;">A custom piece begins as a conversation, and ends as a garment that could only ever be yours.</p>
+        <p style="margin:0;max-width:480px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">Our cutters and seamstresses work around one long table, where every piece is drawn, cut and finished by hand. We take on a small number of custom pieces each month, so each one has our full attention.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0;border-top:1px solid #D9D0C4;">
+          <span style="flex:1 1 140px;display:flex;flex-direction:column;gap:4px;padding:16px 16px 0 0;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Time</span><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">About six weeks</span></span>
+          <span style="flex:1 1 140px;display:flex;flex-direction:column;gap:4px;padding:16px 16px 0 0;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">From</span><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">GHS 4,500</span></span>
+          <span style="flex:1 1 140px;display:flex;flex-direction:column;gap:4px;padding:16px 16px 0 0;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">To begin</span><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">50% deposit</span></span>
+        </div>
+      </div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1771555557406-d1cae82cdbca?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Spools of thread on wooden stools" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+        <figcaption style="font-size:12px;color:#6B6056;">Thread, matched to the shade before the first cut.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-label="How it works" style="background:#FBF8F3;border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,144px) clamp(20px,5vw,72px);box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(36px,5vw,64px);">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">How it works</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(38px,4.6vw,68px);line-height:1;letter-spacing:-0.015em;">Four steps, about six weeks.</h2>
+        </div>
+        <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(36px,3vw,40px) clamp(16px,2vw,28px);">
+          <li style="display:flex;flex-direction:column;gap:14px;">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1787505136259-5195dfbfcd01?w=900&amp;q=80&amp;auto=format&amp;fit=crop" alt="A designer writing notes in the studio" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;"><span>01</span><span>45 minutes</span></span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;line-height:1.1;">The consultation</h3>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:#2B211B;text-wrap:pretty;">Tell your designer the occasion and how you want to feel. We sketch together and take your measurements.</p>
+          </li>
+          <li style="display:flex;flex-direction:column;gap:14px;">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1787505136265-9a99dad3bbac?w=900&amp;q=80&amp;auto=format&amp;fit=crop" alt="Hands cutting white fabric" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;"><span>02</span><span>Weeks 1 to 2</span></span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;line-height:1.1;">Fabric, chosen and cut</h3>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:#2B211B;text-wrap:pretty;">Silk, crepe, lace, linen or a Kente-inspired weave. Once you approve the sketch, we cut by hand.</p>
+          </li>
+          <li style="display:flex;flex-direction:column;gap:14px;">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1787505136296-1e8f0750e5ff?w=900&amp;q=80&amp;auto=format&amp;fit=crop" alt="A designer adjusting a dress on a mannequin" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;"><span>03</span><span>Weeks 3 to 5</span></span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;line-height:1.1;">The fittings</h3>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:#2B211B;text-wrap:pretty;">Two fittings, sometimes three, until the piece moves the way you do.</p>
+          </li>
+          <li style="display:flex;flex-direction:column;gap:14px;">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1769107805465-bfd41863f1a0?w=900&amp;q=80&amp;auto=format&amp;fit=crop" alt="A rail of finished pieces" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;"><span>04</span><span>Week 6</span></span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;line-height:1.1;">Ready for you</h3>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:#2B211B;text-wrap:pretty;">Pressed and waiting at your boutique. The balance is paid when you collect.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-label="Made for" style="padding:clamp(88px,11vw,160px) 0;">
+      <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(32px,4vw,56px);box-sizing:border-box;display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Made for</span>
+        <h2 style="margin:0;max-width:760px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(38px,4.6vw,68px);line-height:1;letter-spacing:-0.015em;text-wrap:balance;">Recent pieces, and the days they were made for.</h2>
+      </div>
+      <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(260px,1fr));gap:clamp(16px,2vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 clamp(20px,5vw,72px);scroll-padding:0 clamp(20px,5vw,72px);box-sizing:border-box;">
+        <a href="/custom-request?occasion=Wedding%20guest" style="display:flex;flex-direction:column;gap:14px;color:#141210;text-decoration:none;scroll-snap-align:start;" style-hover="color:#141210;">
+          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.pexels.com/photos/6766741/pexels-photo-6766741.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="A mother of the bride in ivory" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Wedding guest</span>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;text-wrap:pretty;">Esi wanted to honour the bride and still feel like herself. A champagne silk slip, cut on the bias, that caught the evening light.</p>
+          <span style="font-size:13px;color:#6B6056;">Esi A. · A wedding in Aburi</span>
+        </a>
+        <a href="/custom-request?occasion=Bridal%20party" style="display:flex;flex-direction:column;gap:14px;color:#141210;text-decoration:none;scroll-snap-align:start;" style-hover="color:#141210;">
+          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.pexels.com/photos/8087739/pexels-photo-8087739.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="A client in a sunlit drawing room" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Bridal party</span>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;text-wrap:pretty;">Five bridesmaids, one ivory lace. Each dress shared the fabric and differed at the neckline, so every woman chose her own.</p>
+          <span style="font-size:13px;color:#6B6056;">The Owusu bridal party</span>
+        </a>
+        <a href="/custom-request?occasion=Milestone%20birthday" style="display:flex;flex-direction:column;gap:14px;color:#141210;text-decoration:none;scroll-snap-align:start;" style-hover="color:#141210;">
+          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.pexels.com/photos/7020558/pexels-photo-7020558.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="A woman in a leather jacket against a deep red wall" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Milestone birthday</span>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;text-wrap:pretty;">For her fiftieth, Naa asked for drama. An open-back column gown, fitted three times and finished two days early.</p>
+          <span style="font-size:13px;color:#6B6056;">Naa K. · Her 50th, Labadi</span>
+        </a>
+        <a href="/custom-request?occasion=Corporate%20gala" style="display:flex;flex-direction:column;gap:14px;color:#141210;text-decoration:none;scroll-snap-align:start;" style-hover="color:#141210;">
+          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.pexels.com/photos/7468092/pexels-photo-7468092.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="A chairwoman in a tailored ink suit" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Corporate gala</span>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;text-wrap:pretty;">An ink crepe suit for an awards night, with a Kente stripe hidden inside the lapel. Only she knows it is there.</p>
+          <span style="font-size:13px;color:#6B6056;">Dzifa M. · An awards evening, Accra</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-label="Begin" style="background:#2B211B;color:#F6F1EA;">
+      <div style="max-width:880px;margin:0 auto;padding:clamp(96px,12vw,168px) 24px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">Begin</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,5.2vw,76px);line-height:1.02;letter-spacing:-0.015em;text-wrap:balance;">Tell us about the day. We will take it from there.</h2>
+        <p style="margin:0;max-width:480px;font-size:15px;line-height:1.7;text-wrap:pretty;">Five short questions, then a consultation with your designer. The deposit holds your place in the atelier calendar.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;margin-top:10px;">
+          <a href="/custom-request" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#F6F1EA;color:#141210;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="background:#D9D0C4;color:#141210;">Begin your custom piece</a>
+          <a href="/our-stores" style="display:inline-flex;align-items:center;min-height:52px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;" style-hover="color:#D9D0C4;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Visit us first</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="IvieFooter" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const boot = () => { if (!window.IVIE || !window.IVIE.ambient) { this.t = setTimeout(boot, 40); return; } this.off = window.IVIE.ambient(); };
+    boot();
+  }
+  componentWillUnmount() { clearTimeout(this.t); this.off && this.off(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

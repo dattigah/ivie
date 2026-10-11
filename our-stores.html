@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · Our Stores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<script src="./ivie-data.js"></script>
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+::selection{background:#D9D0C4;color:#141210;}
+@keyframes ivie-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="background:#F6F1EA;color:#141210;font-family:'Manrope',sans-serif;font-size:15px;overflow-x:clip;">
+  <dc-import name="IvieHeader" transparent-until-id="stores-hero" hint-size="100%,1px"></dc-import>
+  <main>
+    <section id="stores-hero" aria-label="Our Stores" style="position:relative;min-height:max(560px,78svh);background:#2B211B;color:#F6F1EA;overflow:hidden;display:flex;align-items:flex-end;">
+      <img src="https://images.pexels.com/videos/9690753/pexels-photo-9690753.jpeg?auto=compress&amp;w=1600" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;filter:saturate(0.9) contrast(1.02) sepia(0.06);">
+      <video data-src="https://www.pexels.com/download/video/9690753/" data-max-op="0.55" muted="" loop="" playsinline="" preload="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);opacity:0;transition:opacity 1400ms cubic-bezier(0.22,1,0.36,1);"></video>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,16,13,0.92) 0%, rgba(20,16,13,0.4) 60%, rgba(20,16,13,0.3) 100%);"></div>
+      <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:140px clamp(20px,5vw,72px) clamp(48px,8vh,96px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px;animation:ivie-rise 1100ms cubic-bezier(0.22,1,0.36,1) both;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">Our Stores · Accra</span>
+        <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(52px,8vw,120px);line-height:0.98;letter-spacing:-0.02em;">Two homes.</h1>
+        <p style="margin:0;max-width:440px;font-size:16px;line-height:1.7;text-wrap:pretty;">Try on, collect, be fitted or simply be styled. Book a time and we will have everything ready.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:6px;">
+          <a href="#east-legon" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;" style-hover="color:#D9D0C4;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">East Legon</span></a>
+          <a href="#spintex" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:#F6F1EA;text-decoration:none;" style-hover="color:#D9D0C4;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Spintex</span></a>
+        </div>
+      </div>
+    </section>
+
+    <article id="east-legon" aria-label="East Legon" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,5vw,72px) 0;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:clamp(36px,6vw,96px);align-items:flex-start;">
+      <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:10px;">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.pexels.com/photos/8087739/pexels-photo-8087739.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="A client in a sunlit drawing room, East Legon boutique" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+      </div>
+      <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Boutique 01 · With the atelier upstairs</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(48px,5.6vw,84px);line-height:1;letter-spacing:-0.015em;">East Legon</h2>
+          <p style="margin:0;max-width:460px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">Our first home. Three fitting rooms, a quiet lounge, and the cutting table visible through the glass.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px 24px;padding-top:22px;border-top:1px solid #D9D0C4;">
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Address</span><span style="font-size:14px;line-height:1.6;">12 Lagos Avenue<br>East Legon, Accra</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Hours</span><span style="font-size:14px;line-height:1.6;">Mon to Sat, 10:00 to 19:00<br>Sun, 13:00 to 18:00</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Call</span><a href="tel:+233300000101" style="font-size:14px;line-height:1.6;color:#141210;text-decoration:none;">+233 30 000 0101</a></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">WhatsApp</span><a href="https://wa.me/233200000101" target="_blank" rel="noopener" style="font-size:14px;line-height:1.6;color:#141210;text-decoration:none;">+233 20 000 0101</a></div>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;padding-bottom:10px;">Services</span>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Fittings</span><span style="font-size:13px;color:#2B211B;text-align:right;">Atelier rooms, every day, by appointment</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Styling sessions</span><span style="font-size:13px;color:#2B211B;text-align:right;">One hour, complimentary</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Collection</span><span style="font-size:13px;color:#2B211B;text-align:right;">Same day for online orders</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div role="img" aria-label="Map of East Legon, placeholder" style="position:relative;aspect-ratio:16/9;border:1px solid #D9D0C4;border-radius:2px;background:repeating-linear-gradient(135deg, #ECE4D8 0 10px, #E5DCCF 10px 20px);display:flex;align-items:center;justify-content:center;">
+            <span style="padding:6px 10px;background:#FBF8F3;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6056;">map · 12 Lagos Avenue, East Legon</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="/book-a-visit?store=East%20Legon" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:#141210;color:#F6F1EA;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="background:#2B211B;color:#F6F1EA;">Book a visit</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Ivi%C3%A9%20East%20Legon%2012%20Lagos%20Avenue%20Accra" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:1px solid #D9D0C4;border-radius:2px;color:#141210;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="border-color:#141210;color:#141210;">Directions</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="spintex" aria-label="Spintex" style="max-width:1320px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(20px,5vw,72px) clamp(88px,11vw,160px);box-sizing:border-box;display:flex;flex-wrap:wrap;flex-direction:row-reverse;gap:clamp(36px,6vw,96px);align-items:flex-start;">
+      <div style="flex:1 1 380px;min-width:0;">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#D9D0C4;"><img src="https://images.unsplash.com/photo-1765009433753-c7462637d21f?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="A modern boutique interior, Spintex" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);"></div>
+      </div>
+      <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Boutique 02 · Parking at the door</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(48px,5.6vw,84px);line-height:1;letter-spacing:-0.015em;">Spintex</h2>
+          <p style="margin:0;max-width:460px;font-size:15px;line-height:1.75;color:#2B211B;text-wrap:pretty;">A lighter, larger room made for collection and styling. Tell us you are outside and we bring your pieces to you.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px 24px;padding-top:22px;border-top:1px solid #D9D0C4;">
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Address</span><span style="font-size:14px;line-height:1.6;">Coastal Estate Road<br>Spintex, Accra</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Hours</span><span style="font-size:14px;line-height:1.6;">Mon to Sat, 10:00 to 19:00<br>Sun, 13:00 to 18:00</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Call</span><a href="tel:+233300000202" style="font-size:14px;line-height:1.6;color:#141210;text-decoration:none;">+233 30 000 0202</a></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">WhatsApp</span><a href="https://wa.me/233200000202" target="_blank" rel="noopener" style="font-size:14px;line-height:1.6;color:#141210;text-decoration:none;">+233 20 000 0202</a></div>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;padding-bottom:10px;">Services</span>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Fittings</span><span style="font-size:13px;color:#2B211B;text-align:right;">Thursday to Saturday, by appointment</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Styling sessions</span><span style="font-size:13px;color:#2B211B;text-align:right;">One hour, complimentary</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;"><span style="font-family:'Cormorant Garamond',serif;font-size:22px;">Collection</span><span style="font-size:13px;color:#2B211B;text-align:right;">Same day, kerbside if you prefer</span></div>
+        </div>
+        <div role="img" aria-label="Map of Spintex, placeholder" style="position:relative;aspect-ratio:16/9;border:1px solid #D9D0C4;border-radius:2px;background:repeating-linear-gradient(135deg, #ECE4D8 0 10px, #E5DCCF 10px 20px);display:flex;align-items:center;justify-content:center;">
+          <span style="padding:6px 10px;background:#FBF8F3;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6056;">map · Coastal Estate Road, Spintex</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="/book-a-visit?store=Spintex" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:#141210;color:#F6F1EA;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="background:#2B211B;color:#F6F1EA;">Book a visit</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Ivi%C3%A9%20Spintex%20Coastal%20Estate%20Road%20Accra" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:1px solid #D9D0C4;border-radius:2px;color:#141210;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;" style-hover="border-color:#141210;color:#141210;">Directions</a>
+        </div>
+      </div>
+    </article>
+  </main>
+  <dc-import name="IvieFooter" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const boot = () => { if (!window.IVIE || !window.IVIE.ambient) { this.t = setTimeout(boot, 40); return; } this.off = window.IVIE.ambient(); };
+    boot();
+  }
+  componentWillUnmount() { clearTimeout(this.t); this.off && this.off(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F1EA">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ivié">
+<title>Ivié</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./ivie-data.js"></script>
+<style>
+html,body{margin:0;background:#2B211B;height:100%;-webkit-font-smoothing:antialiased;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="height:100dvh;max-width:440px;margin:0 auto;display:flex;flex-direction:column;background:#F6F1EA;font-family:'Manrope',sans-serif;">
+  <iframe src="{{ src }}" title="{{ frameTitle }}" style="flex:1;width:100%;border:0;display:block;background:#F6F1EA;"></iframe>
+  <nav aria-label="App" style="flex-shrink:0;display:grid;grid-template-columns:repeat(5,1fr);padding:4px 4px calc(6px + env(safe-area-inset-bottom));background:#FBF8F3;border-top:1px solid #D9D0C4;">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+      <button onClick="{{ t.go }}" aria-current="{{ t.cur }}" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:56px;background:none;border:0;cursor:pointer;color:{{ t.fg }};font-family:'Manrope',sans-serif;font-size:10px;font-weight:{{ t.fw }};letter-spacing:0.08em;text-transform:uppercase;">
+        <span style="position:absolute;top:0;left:30%;right:30%;height:2px;background:{{ t.bar }};"></span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="{{ t.icon }}"></path></svg>
+        <sc-if value="{{ t.badge }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:6px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;box-sizing:border-box;border-radius:8px;background:#A8865A;color:#141210;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;letter-spacing:0;">{{ t.badge }}</span></sc-if>
+        {{ t.label }}
+      </button>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const TABS = [
+  ['Home', '/', 'M4 11l8-7 8 7v9h-5v-6H9v6H4z'],
+  ['Shop', '/shop', 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z'],
+  ['Atelier', '/atelier', 'M6 3h12M6 21h12M8 3v18M16 3v18M8 8l8 3M8 13l8 3'],
+  ['Bag', '/checkout', 'M5 8h14l-1.2 12.5H6.2L5 8zM9 8V6.5a3 3 0 0 1 6 0V8'],
+  ['Account', '/account', 'M12 4a4 4 0 1 1 0 8a4 4 0 1 1 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6']
+];
+class Component extends DCLogic {
+  state = (() => {
+    let k = 'Home';
+    try { k = new URLSearchParams(location.search).get('tab') || localStorage.getItem('ivie-app-tab') || 'Home'; } catch (e) {}
+    return { k: TABS.some(t => t[0] === k) ? k : 'Home', n: 0, bag: 0 };
+  })();
+  componentDidMount() {
+    this.sync = () => { if (window.IVIE) this.setState({ bag: window.IVIE.cart.count() }); };
+    const boot = () => { if (!window.IVIE) { this.bt = setTimeout(boot, 40); return; } this.sync(); };
+    boot();
+    window.addEventListener('storage', this.sync);
+    this.iv = setInterval(this.sync, 1500);
+  }
+  componentWillUnmount() { window.removeEventListener('storage', this.sync); clearInterval(this.iv); clearTimeout(this.bt); }
+  renderVals() {
+    const s = this.state, cur = TABS.find(t => t[0] === s.k);
+    return {
+      src: cur[1] + (cur[1].includes('?') ? '&' : '?') + 'app=1&r=' + s.n,
+      frameTitle: 'Ivié · ' + cur[0],
+      tabs: TABS.map(([label, , icon]) => { const on = label === s.k; return { label, icon, cur: on ? 'page' : 'false', fg: on ? '#141210' : '#6B6056', fw: on ? 600 : 500, bar: on ? '#141210' : 'transparent', badge: label === 'Bag' && s.bag ? s.bag : 0,
+        go: () => { try { localStorage.setItem('ivie-app-tab', label); } catch (e) {} this.setState(st => ({ k: label, n: label === st.k ? st.n + 1 : st.n })); } }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

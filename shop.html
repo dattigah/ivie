@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivié · Ready-to-Wear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<script src="./ivie-data.js"></script>
+<style>
+html,body{margin:0;background:#F6F1EA;color:#141210;-webkit-font-smoothing:antialiased;}
+a{color:#141210;}
+a:hover{color:#2B211B;}
+:focus-visible{outline:2px solid #A8865A;outline-offset:3px;}
+::selection{background:#D9D0C4;color:#141210;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;scroll-behavior:auto !important;}}
+</style>
+</helmet>
+<div style="background:#F6F1EA;color:#141210;font-family:'Manrope',sans-serif;font-size:15px;overflow-x:clip;">
+  <dc-import name="IvieHeader" bag-count="{{ bag }}" hint-size="100%,1px"></dc-import>
+
+  <header style="padding:calc({{ barTop }} + clamp(56px,8vw,112px)) 24px clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;">
+    <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Collection 01 · 2026</span>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(48px,7vw,104px);line-height:1;letter-spacing:-0.015em;">{{ title }}</h1>
+    <p style="margin:0;max-width:460px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(20px,1.8vw,24px);line-height:1.4;color:#2B211B;text-wrap:balance;">Silk, crepe, lace and linen, cut and finished in our Accra atelier.</p>
+  </header>
+
+  <div style="position:sticky;top:{{ barTop }};z-index:40;background:#F6F1EA;border-top:1px solid #D9D0C4;border-bottom:1px solid #D9D0C4;">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(8px,2.4vw,32px);display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;">
+      <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:2px;flex-wrap:wrap;">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+            <button onClick="{{ g.toggleOpen }}" aria-expanded="{{ g.openStr }}" style="display:flex;align-items:center;gap:8px;min-height:52px;padding:0 14px;background:none;border:0;border-bottom:1px solid {{ g.underline }};margin-bottom:-1px;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">
+              <span>{{ g.btnLabel }}</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="transform:{{ g.chev }};transition:transform 250ms;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="font-size:12px;color:#6B6056;white-space:nowrap;">{{ countTxt }}</span>
+          <button onClick="{{ sortGroup.toggleOpen }}" aria-expanded="{{ sortGroup.openStr }}" style="display:flex;align-items:center;gap:8px;min-height:52px;padding:0 4px 0 14px;background:none;border:0;border-bottom:1px solid {{ sortGroup.underline }};margin-bottom:-1px;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">
+            <span>Sort: {{ sortLabel }}</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="transform:{{ sortGroup.chev }};transition:transform 250ms;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ openSheet }}" style="display:flex;align-items:center;gap:10px;min-height:48px;padding:0 8px;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="4" y1="8" x2="20" y2="8"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+          <span>{{ filterBtn }}</span>
+        </button>
+        <span style="font-size:12px;color:#6B6056;">{{ countTxt }}</span>
+        <button onClick="{{ openSheet }}" style="display:flex;align-items:center;min-height:48px;padding:0 8px;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">Sort</button>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:100%;left:0;right:0;background:#FBF8F3;border-bottom:1px solid #D9D0C4;box-shadow:0 18px 32px rgba(20,18,16,0.06);">
+        <div style="max-width:1440px;margin:0 auto;padding:24px clamp(8px,2.4vw,32px) 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+          <div role="group" aria-label="{{ panelTitle }}" style="display:flex;flex-wrap:wrap;gap:8px;padding-left:14px;">
+            <sc-for list="{{ panelOpts }}" as="o" hint-placeholder-count="5">
+              <button onClick="{{ o.pick }}" aria-pressed="{{ o.onStr }}" style="display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:13px;transition:background-color 200ms, color 200ms, border-color 200ms;">
+                <sc-if value="{{ o.hasSwatch }}" hint-placeholder-val="{{ false }}"><span style="width:12px;height:12px;border-radius:50%;background:{{ o.swatch }};border:1px solid rgba(20,18,16,0.25);"></span></sc-if>
+                <span>{{ o.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <button onClick="{{ closePanel }}" style="display:flex;align-items:center;min-height:44px;padding:0 4px;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">Done</span></button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePanel }}" style="position:fixed;inset:0;z-index:30;"></div>
+  </sc-if>
+
+  <main style="max-width:1440px;margin:0 auto;padding:0 clamp(8px,2.4vw,32px) clamp(80px,9vw,140px);">
+    <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:16px 0 0;">
+        <sc-for list="{{ actives }}" as="a" hint-placeholder-count="2">
+          <button onClick="{{ a.remove }}" aria-label="Remove filter {{ a.label }}" style="display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;background:#ECE4D8;border:0;border-radius:2px;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;">
+            <span>{{ a.label }}</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+          </button>
+        </sc-for>
+        <button onClick="{{ clearAll }}" style="display:flex;align-items:center;min-height:44px;padding:0 8px;background:none;border:0;color:#141210;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;"><span style="border-bottom:1px solid #A8865A;padding-bottom:2px;">Clear all</span></button>
+      </div>
+    </sc-if>
+
+    <div style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:clamp(6px,1.2vw,20px);row-gap:clamp(32px,3.4vw,56px);padding-top:clamp(16px,2vw,28px);">
+      <sc-for list="{{ rows }}" as="c" hint-placeholder-count="8">
+        <sc-if value="{{ c.isCard }}" hint-placeholder-val="{{ true }}">
+          <article style="display:flex;flex-direction:column;gap:12px;min-width:0;">
+            <div onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#D9D0C4;">
+              <a href="{{ c.href }}" onClick="{{ c.go }}" onTouchStart="{{ c.ts }}" onTouchEnd="{{ c.te }}" onTouchMove="{{ c.tm }}" onContextMenu="{{ c.ctx }}" aria-label="{{ c.name }}, {{ c.price }}" style="position:absolute;inset:0;display:block;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;">
+                <img data-main="" src="{{ c.img0 }}" alt="{{ c.alt0 }}" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ c.pos0 }};filter:saturate(0.9) contrast(1.02) sepia(0.06);transform:{{ c.zoom }};transition:transform 1200ms cubic-bezier(0.22,1,0.36,1);">
+                <img src="{{ c.img1 }}" alt="" aria-hidden="true" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ c.pos1 }};filter:saturate(0.9) contrast(1.02) sepia(0.06);opacity:{{ c.altOp }};transition:opacity 600ms cubic-bezier(0.22,1,0.36,1);">
+                <sc-if value="{{ c.hasVideo }}" hint-placeholder-val="{{ false }}">
+                  <video data-src="{{ c.vidSrc }}" muted="" loop="" playsinline="" preload="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);opacity:{{ c.vidOp }};transition:opacity 600ms cubic-bezier(0.22,1,0.36,1);"></video>
+                </sc-if>
+              </a>
+              <sc-if value="{{ c.isNew }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#141210;background:rgba(251,248,243,0.88);padding:5px 8px;border-radius:2px;pointer-events:none;">New</span>
+              </sc-if>
+              <button onClick="{{ c.toggleWish }}" aria-label="{{ c.wishLabel }}" aria-pressed="{{ c.wishStr }}" style="position:absolute;top:4px;right:4px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:#141210;cursor:pointer;">
+                <span style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(251,248,243,0.85);border-radius:50%;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ c.heartFill }}" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"></path></svg>
+                </span>
+              </button>
+              <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;left:8px;right:8px;bottom:8px;background:rgba(251,248,243,0.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:2px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px;opacity:{{ c.qOp }};transform:{{ c.qY }};pointer-events:{{ c.qPe }};transition:opacity 350ms cubic-bezier(0.22,1,0.36,1), transform 350ms cubic-bezier(0.22,1,0.36,1);">
+                  <span style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">Quick add</span>
+                  <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                    <sc-for list="{{ c.quick }}" as="q" hint-placeholder-count="5">
+                      <button onClick="{{ q.add }}" disabled="{{ q.disabled }}" aria-label="Add size {{ q.s }} to bag" style="flex:1 1 0;min-width:34px;min-height:44px;padding:0 6px;background:transparent;border:1px solid {{ q.line }};border-radius:2px;color:{{ q.fg }};text-decoration:{{ q.strike }};cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;" style-hover="background:#141210;color:#F6F1EA;border-color:#141210;">{{ q.s }}</button>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <a href="{{ c.href }}" onClick="{{ c.goText }}" style="display:flex;flex-direction:column;gap:4px;color:#141210;text-decoration:none;padding:0 2px;">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(17px,1.4vw,20px);line-height:1.2;">{{ c.name }}</span>
+              <span style="font-size:13px;">{{ c.price }}<span style="color:#6B6056;">{{ c.colourTxt }}</span></span>
+            </a>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;padding:0 2px;">
+              <span style="font-size:11px;letter-spacing:0.06em;color:#6B6056;">{{ c.sizesTxt }}</span>
+              <span aria-label="{{ c.availLabel }}" style="display:flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:0.1em;color:#6B6056;">
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;border:1px solid {{ c.elLine }};background:{{ c.elDot }};"></span>EL</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;border:1px solid {{ c.spLine }};background:{{ c.spDot }};"></span>SP</span>
+              </span>
+            </div>
+          </article>
+        </sc-if>
+        <sc-if value="{{ c.isEdit }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ c.link }}" style="grid-column:1/-1;position:relative;display:block;aspect-ratio:{{ editAR }};overflow:hidden;border-radius:2px;background:#2B211B;color:#F6F1EA;text-decoration:none;margin:clamp(8px,2vw,32px) calc(clamp(8px,2.4vw,32px) * -1);">
+            <img src="{{ c.img }}" alt="{{ c.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.9) contrast(1.02) sepia(0.06);transition:transform 1400ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:scale(1.03);">
+            <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,16,13,0.8) 0%, rgba(20,16,13,0.15) 55%, rgba(20,16,13,0) 100%);"></span>
+            <span style="position:absolute;left:0;right:0;bottom:0;padding:clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:14px;max-width:640px;">
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#D9D0C4;">{{ c.eyebrow }}</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.4vw,64px);line-height:1.02;letter-spacing:-0.015em;text-wrap:balance;">{{ c.title }}</span>
+              <span style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;"><span style="border-bottom:1px solid #A8865A;padding-bottom:3px;">{{ c.cta }}</span></span>
+            </span>
+          </a>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:clamp(64px,8vw,120px) 24px;">
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3vw,42px);line-height:1.1;">Nothing matches, just yet.</p>
+        <p style="margin:0;max-width:400px;font-size:14px;line-height:1.7;color:#6B6056;">Loosen a filter, or ask a stylist. Many pieces can be made to your size in the atelier.</p>
+        <button onClick="{{ clearAll }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;margin-top:8px;background:#141210;color:#F6F1EA;border:1px solid #141210;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">Clear all filters</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:clamp(56px,6vw,96px);">
+        <span style="font-size:12px;color:#6B6056;">{{ showingTxt }}</span>
+        <span style="width:160px;height:1px;background:#D9D0C4;position:relative;"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ progress }};background:#141210;transition:width 500ms cubic-bezier(0.22,1,0.36,1);"></span></span>
+        <button onClick="{{ loadMore }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 32px;margin-top:8px;background:transparent;color:#141210;border:1px solid #141210;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:background-color 250ms cubic-bezier(0.22,1,0.36,1), color 250ms;" style-hover="background:#141210;color:#F6F1EA;">{{ moreTxt }}</button>
+      </div>
+    </sc-if>
+  </main>
+
+  <dc-import name="IvieFooter" hint-size="100%,640px"></dc-import>
+
+  <div onClick="{{ closeSheet }}" style="position:fixed;inset:0;z-index:60;background:rgba(20,18,16,0.42);opacity:{{ sheetBackOp }};pointer-events:{{ sheetPe }};transition:opacity 500ms cubic-bezier(0.22,1,0.36,1);"></div>
+  <div role="dialog" aria-label="Filter and sort" aria-hidden="{{ sheetHidden }}" style="position:fixed;left:0;right:0;bottom:0;z-index:61;max-height:88vh;display:flex;flex-direction:column;background:#FBF8F3;border-radius:12px 12px 0 0;transform:{{ sheetY }};visibility:{{ sheetVis }};transition:transform 600ms cubic-bezier(0.22,1,0.36,1), visibility 600ms;">
+    <div style="display:flex;justify-content:center;padding:10px 0 2px;"><span style="width:36px;height:4px;border-radius:2px;background:#D9D0C4;"></span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 12px 4px 20px;border-bottom:1px solid #D9D0C4;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:26px;">Filter and sort</span>
+      <button onClick="{{ closeSheet }}" aria-label="Close" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:0;color:#141210;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg></button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:8px 20px 20px;-webkit-overflow-scrolling:touch;">
+      <sc-for list="{{ sheetGroups }}" as="g" hint-placeholder-count="6">
+        <div role="group" aria-label="{{ g.label }}" style="display:flex;flex-direction:column;gap:12px;padding:18px 0;border-bottom:1px solid #D9D0C4;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#6B6056;">{{ g.label }}</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for list="{{ g.options }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pick }}" aria-pressed="{{ o.onStr }}" style="display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.line }};border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:14px;">
+                <sc-if value="{{ o.hasSwatch }}" hint-placeholder-val="{{ false }}"><span style="width:12px;height:12px;border-radius:50%;background:{{ o.swatch }};border:1px solid rgba(20,18,16,0.25);"></span></sc-if>
+                <span>{{ o.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:10px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid #D9D0C4;">
+      <button onClick="{{ clearAll }}" style="flex:0 0 auto;min-height:50px;padding:0 20px;background:transparent;color:#141210;border:1px solid #141210;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">Clear</button>
+      <button onClick="{{ closeSheet }}" style="flex:1;min-height:50px;padding:0 20px;background:#141210;color:#F6F1EA;border:1px solid #141210;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">{{ showBtn }}</button>
+    </div>
+  </div>
+
+  <div role="status" aria-live="polite" style="position:fixed;left:50%;bottom:clamp(16px,3vw,32px);z-index:80;transform:translate(-50%,{{ toastY }});opacity:{{ toastOp }};transition:opacity 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1);pointer-events:none;width:max-content;max-width:calc(100vw - 32px);">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;background:#141210;color:#F6F1EA;border-radius:2px;font-size:13px;line-height:1.5;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="5 12 10 17 19 7"></polyline></svg>
+      <span>{{ toast }}</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CATS = ['Dresses', 'Two-Piece Sets', 'Tops', 'Trousers and Skirts', 'Outerwear', 'Menswear'];
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const PRICES = ['Under GHS 2,000', 'GHS 2,000 to 4,000', 'Over GHS 4,000'];
+const AVAIL = ['East Legon', 'Spintex', 'Both'];
+const SORTS = ['Featured', 'Newest', 'Price, low to high', 'Price, high to low'];
+const EDITS = [
+  { img: 'rail', alt: 'A rail of neutral dresses', eyebrow: 'The Harmattan Edit', title: 'Linen, crepe and silk in the colours of the dry season.', cta: 'Shop the edit', link: '/shop?sort=newest' },
+  { img: 'studio', alt: 'A designer adjusting a dress on a mannequin', eyebrow: 'The Atelier', title: 'Not quite your size? We can make it for you.', cta: 'Begin a custom piece', link: '/atelier' }
+];
+const LABELS = { cat: 'Category', size: 'Size', colour: 'Colour', price: 'Price (GHS)', avail: 'Availability' };
+function initState() {
+  let q = {};
+  try { q = Object.fromEntries(new URLSearchParams(location.search)); } catch (e) {}
+  return {
+    mobile: window.innerWidth < 768, lite: false, ready: !!window.IVIE,
+    f: { cat: q.cat ? [q.cat] : [], size: [], colour: [], price: '', avail: '' }, q: (q.q || '').trim(),
+    sort: q.sort === 'newest' ? 'Newest' : 'Featured',
+    open: null, sheet: false, shown: 8, hover: null, wish: [], bag: 2, toast: '', toastOn: false
+  };
+}
+class Component extends DCLogic {
+  state = initState();
+  componentDidMount() {
+    this.canHover = window.matchMedia('(hover: hover)').matches;
+    const boot = () => {
+      const D = window.IVIE;
+      if (!D) { this.bt = setTimeout(boot, 40); return; }
+      this.setState({ ready: true, lite: D.lite(), wish: D.store.get('ivie-wish', []), bag: D.cart.count() });
+    };
+    boot();
+    this.onResize = () => { const m = window.innerWidth < 768; if (m !== this.state.mobile) this.setState({ mobile: m, open: null }); };
+    this.onLite = e => this.setState({ lite: !!e.detail });
+    this.onKey = e => { if (e.key === 'Escape') { this.setState({ open: null }); this.closeSheet(); } };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('ivie-lite', this.onLite);
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() {
+    clearTimeout(this.bt); clearTimeout(this.tt); clearTimeout(this.lp);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('ivie-lite', this.onLite);
+    window.removeEventListener('keydown', this.onKey);
+  }
+  closeSheet = () => { this.setState({ sheet: false }); document.documentElement.style.overflow = ''; };
+  showToast(t) {
+    clearTimeout(this.tt);
+    this.setState({ toast: t, toastOn: true });
+    this.tt = setTimeout(() => this.setState({ toastOn: false }), 2800);
+  }
+  toggle(key, val) {
+    const f = { ...this.state.f };
+    if (Array.isArray(f[key])) f[key] = f[key].includes(val) ? f[key].filter(x => x !== val) : [...f[key], val];
+    else f[key] = f[key] === val ? '' : val;
+    this.setState({ f, shown: 8 });
+  }
+  peek(key, el, on) {
+    this.setState({ hover: on ? key : null });
+    const v = el && el.querySelector('video');
+    if (!v) return;
+    if (on && !this.state.lite && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!v.getAttribute('src')) { v.src = v.dataset.src; v.muted = true; }
+      v.play().catch(() => {});
+    } else v.pause();
+  }
+  cards() {
+    const D = window.IVIE;
+    if (!D) return [];
+    const s = this.state, f = s.f;
+    let list = [];
+    D.products.forEach((p, i) => p.variants.forEach((v, j) => list.push({ p, v, i: i * 2 + j })));
+    list = list.filter(({ p, v }) => {
+      const inSizes = p.sizes.filter(z => !p.out.includes(z));
+      if (s.q && !(p.name + ' ' + (p.fabric || '') + ' ' + (p.desc || '') + ' ' + p.cat + ' ' + v.colour).toLowerCase().includes(s.q.toLowerCase())) return false;
+      if (f.cat.length && !f.cat.includes(p.cat)) return false;
+      if (f.size.length && !f.size.some(z => inSizes.includes(z))) return false;
+      if (f.colour.length && !f.colour.includes(v.colour)) return false;
+      if (f.price === PRICES[0] && !(p.price < 2000)) return false;
+      if (f.price === PRICES[1] && !(p.price >= 2000 && p.price <= 4000)) return false;
+      if (f.price === PRICES[2] && !(p.price > 4000)) return false;
+      if (f.avail === 'East Legon' && !p.el) return false;
+      if (f.avail === 'Spintex' && !p.sp) return false;
+      if (f.avail === 'Both' && !(p.el && p.sp)) return false;
+      return true;
+    });
+    if (s.sort === 'Newest') list.sort((a, b) => (b.p.isNew || 0) - (a.p.isNew || 0) || a.i - b.i);
+    if (s.sort === 'Price, low to high') list.sort((a, b) => a.p.price - b.p.price);
+    if (s.sort === 'Price, high to low') list.sort((a, b) => b.p.price - a.p.price);
+    return list;
+  }
+  opt(label, on, pick, swatch) {
+    return { label, on, onStr: String(on), pick, bg: on ? '#141210' : 'transparent', fg: on ? '#F6F1EA' : '#141210', line: on ? '#141210' : '#D9D0C4', swatch: swatch || '', hasSwatch: !!swatch };
+  }
+  renderVals() {
+    const D = window.IVIE, s = this.state, f = s.f;
+    const desktop = !s.mobile;
+    const all = this.cards();
+    const colours = [];
+    if (D) D.products.forEach(p => p.variants.forEach(v => { if (v.colour && !colours.some(c => c[0] === v.colour)) colours.push([v.colour, v.swatch]); }));
+    const defs = [['cat', CATS], ['size', SIZES], ['colour', colours], ['price', PRICES], ['avail', AVAIL]];
+    const mkGroup = (key, label, options, n) => {
+      const open = s.open === key;
+      return {
+        key, label, options, open, openStr: String(open),
+        btnLabel: n ? label + ' · ' + n : label,
+        underline: open ? '#141210' : 'transparent', chev: open ? 'rotate(180deg)' : 'none',
+        toggleOpen: () => this.setState({ open: open ? null : key })
+      };
+    };
+    const groups = defs.map(([key, opts]) => {
+      const val = f[key];
+      const options = opts.map(o => {
+        const [label, sw] = Array.isArray(o) ? o : [o, ''];
+        const on = Array.isArray(val) ? val.includes(label) : val === label;
+        return this.opt(label, on, () => this.toggle(key, label), sw);
+      });
+      return mkGroup(key, LABELS[key], options, Array.isArray(val) ? val.length : (val ? 1 : 0));
+    });
+    const sortGroup = mkGroup('sort', 'Sort', SORTS.map(o => this.opt(o, s.sort === o, () => this.setState({ sort: o, shown: 8 }))), 0);
+    const openG = [...groups, sortGroup].find(g => g.open);
+    const actives = [];
+    defs.forEach(([key]) => { const v = f[key]; (Array.isArray(v) ? v : (v ? [v] : [])).forEach(label => actives.push({ label, remove: () => this.toggle(key, label) })); });
+
+    const visible = all.slice(0, s.shown);
+    const rows = [];
+    visible.forEach(({ p, v }, idx) => {
+      const key = p.slug + '|' + v.colour;
+      const href = D.href(p.slug, p.variants.length > 1 ? v.colour : '');
+      const hov = s.hover === key;
+      const vid = p.cardVideo && !s.lite ? D.videos[p.cardVideo] : null;
+      const inSizes = p.sizes.filter(z => !p.out.includes(z));
+      const on = s.wish.includes(key);
+      const go = e => {
+        if (this.lpFired) { e.preventDefault(); this.lpFired = false; return; }
+        D.expand(e, href, e.currentTarget.querySelector('img[data-main]'));
+      };
+      rows.push({
+        isCard: true, isEdit: false, key, href, go, isNew: !!p.isNew,
+        goText: e => { const img = e.currentTarget.parentNode.querySelector('img[data-main]'); D.expand(e, href, img); },
+        name: p.name, price: D.fmt(p.price),
+        colourTxt: v.colour ? '  ·  ' + v.colour : '',
+        sizesTxt: inSizes.join('  '),
+        img0: v.imgs[0].src, pos0: v.imgs[0].pos, alt0: v.imgs[0].alt,
+        img1: v.imgs[1].src, pos1: v.imgs[1].pos,
+        altOp: hov ? 1 : 0, zoom: hov ? 'scale(1.03)' : 'scale(1)',
+        hasVideo: !!vid, vidSrc: vid ? vid.src : '', vidOp: hov ? 1 : 0,
+        qOp: hov ? 1 : 0, qY: hov ? 'translateY(0)' : 'translateY(8px)', qPe: hov ? 'auto' : 'none',
+        quick: p.sizes.map(z => {
+          const out = p.out.includes(z);
+          return {
+            s: z, disabled: out, line: out ? '#E6DED3' : '#D9D0C4', fg: out ? '#8C7F72' : '#141210', strike: out ? 'line-through' : 'none',
+            add: () => { if (out) return; const bag = D.cart.add({ slug: p.slug, colour: p.variants[0].colour, size: z }); this.setState({ bag }); this.showToast(p.name + ', size ' + z + ', added to your bag'); }
+          };
+        }),
+        elDot: p.el ? '#4F6B4A' : 'transparent', elLine: p.el ? '#4F6B4A' : '#8C7F72',
+        spDot: p.sp ? '#4F6B4A' : 'transparent', spLine: p.sp ? '#4F6B4A' : '#8C7F72',
+        availLabel: 'East Legon: ' + (p.el ? 'in stock' : 'out of stock') + '. Spintex: ' + (p.sp ? 'in stock' : 'out of stock') + '.',
+        heartFill: on ? '#141210' : 'none', wishStr: String(on),
+        wishLabel: on ? 'Remove ' + p.name + ' from wishlist' : 'Save ' + p.name + ' to wishlist',
+        toggleWish: () => {
+          const wish = on ? s.wish.filter(k => k !== key) : [...s.wish, key];
+          D.store.set('ivie-wish', wish); this.setState({ wish });
+          this.showToast(on ? 'Removed from your wishlist' : 'Saved to your wishlist');
+        },
+        enter: e => { if (this.canHover) this.peek(key, e.currentTarget, true); },
+        leave: e => { if (this.canHover) this.peek(key, e.currentTarget, false); },
+        ts: e => {
+          const el = e.currentTarget.parentNode;
+          this.lpFired = false; clearTimeout(this.lp); clearTimeout(this.lpOff);
+          this.lp = setTimeout(() => { this.lpFired = true; this.peek(key, el, true); if (navigator.vibrate) navigator.vibrate(8); }, 380);
+        },
+        te: e => {
+          clearTimeout(this.lp);
+          if (this.lpFired) { const el = e.currentTarget.parentNode; this.lpOff = setTimeout(() => this.peek(key, el, false), 700); }
+        },
+        tm: () => clearTimeout(this.lp),
+        ctx: e => e.preventDefault()
+      });
+      if ((idx + 1) % 8 === 0 && idx + 1 < all.length) {
+        const ed = EDITS[Math.floor(idx / 8) % EDITS.length];
+        rows.push({ isCard: false, isEdit: true, key: 'edit' + idx, ...ed, img: D.img(ed.img) });
+      }
+    });
+    const total = all.length, shown = Math.min(s.shown, total), remaining = total - shown;
+    const nActive = actives.length;
+    return {
+      bag: s.bag, desktop, mobile: s.mobile,
+      barTop: s.mobile ? '96px' : '76px',
+      cols: s.mobile ? 2 : 4, editAR: s.mobile ? '4 / 5' : '21 / 9',
+      title: s.q ? 'Results for ' + s.q : (f.cat.length === 1 ? f.cat[0] : 'Ready-to-Wear'),
+      groups, sortGroup, sheetGroups: [...groups, sortGroup],
+      sortLabel: s.sort,
+      panelOpen: desktop && !!openG, panelOpts: openG ? openG.options : [], panelTitle: openG ? openG.label : '',
+      closePanel: () => this.setState({ open: null }),
+      actives, hasActive: nActive > 0,
+      clearAll: () => this.setState({ f: { cat: [], size: [], colour: [], price: '', avail: '' }, shown: 8 }),
+      filterBtn: nActive ? 'Filter · ' + nActive : 'Filter',
+      countTxt: total === 1 ? '1 piece' : total + ' pieces',
+      showBtn: total ? 'Show ' + total + (total === 1 ? ' piece' : ' pieces') : 'No pieces match',
+      rows, isEmpty: !!D && total === 0,
+      hasMore: remaining > 0,
+      showingTxt: 'Showing ' + shown + ' of ' + total,
+      progress: (total ? Math.round(shown / total * 100) : 0) + '%',
+      moreTxt: 'Load more · ' + remaining + ' remaining',
+      loadMore: () => this.setState({ shown: s.shown + 8 }),
+      openSheet: () => { this.setState({ sheet: true }); document.documentElement.style.overflow = 'hidden'; },
+      closeSheet: this.closeSheet,
+      sheetY: s.sheet ? 'translateY(0)' : 'translateY(100%)', sheetVis: s.sheet ? 'visible' : 'hidden',
+      sheetHidden: String(!s.sheet), sheetBackOp: s.sheet ? 1 : 0, sheetPe: s.sheet ? 'auto' : 'none',
+      toast: s.toast, toastOp: s.toastOn ? 1 : 0, toastY: s.toastOn ? '0' : '12px'
+    };
+  }
+}
+</script>
+</body>
+</html>
